@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this package, please cite it as below."
+title: "Reproduction package for \"Norm-Grounded Claim-Level Verification of LLM Answers in Brazilian Banking: Holistic Judges Can Rank but Cannot Point to the Error\""
+type: software
+authors:
+  - family-names: "Santos"
+    given-names: "Anderson Bispo dos"
+    affiliation: "University of Pernambuco (UPE)"
+    orcid: "https://orcid.org/0009-0007-9880-7986"
+  - family-names: "Silva"
+    given-names: "Carlo Marcelo Revoredo da"
+    affiliation: "University of Pernambuco (UPE)"
+    orcid: "https://orcid.org/0000-0003-4283-6490"
+license: MIT
+repository-code: "https://github.com/bishoppython/norm-claim-verification-ptbr"
+keywords: ["LLM-as-a-judge", "claim-level verification", "banking", "regulatory compliance", "retrieval-augmented generation", "Brazilian Portuguese"]

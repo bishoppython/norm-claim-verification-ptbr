@@ -1,0 +1,56 @@
+=== refazer llama3.1:8b holistico 23/11 16:45:00
+holistico / llama3.1:8b: 155 pendentes de 300 -> holistico__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  10/155
+  20/155
+  30/155
+  40/155
+  50/155
+  60/155
+  70/155
+  80/155
+  90/155
+  100/155
+  110/155
+  120/155
+  TIMEOUT llama3.1:8b (tentativa 1)
+  130/155
+  140/155
+  150/155
+  155/155
+=== refazer llama3.1:8b holistico_normas 23/11 17:36:29
+holistico_normas / llama3.1:8b: 279 pendentes de 300 -> holistico_normas__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  TIMEOUT llama3.1:8b (tentativa 1)
+  10/279
+  20/279
+  30/279
+  40/279
+  50/279
+  60/279
+  70/279
+  80/279
+  TIMEOUT llama3.1:8b (tentativa 1)
+  90/279
+  100/279
+  110/279
+  TIMEOUT llama3.1:8b (tentativa 1)
+  120/279
+  130/279
+  140/279
+  150/279
+  160/279
+  170/279
+  180/279
+  190/279
+  200/279
+  210/279
+  220/279
+  230/279
+  240/279
+  250/279
+  TIMEOUT llama3.1:8b (tentativa 1)
+  260/279
+  270/279
+  279/279
+=== fim refazer 23/11 19:14:34

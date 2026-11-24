@@ -1,0 +1,13 @@
+id,papel,produto,status_coleta,revogado,caracteres,url,acesso,sha256_16
+cmn-3919-2010,tarifas e serviços essenciais,conta;cartao,ok,False,49851,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o&numero=3919,2026-11-22,163b0ee2decd59c3
+cmn-4753-2019,"abertura, manutenção e encerramento de conta",conta,ok,False,14977,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o&numero=4753,2026-11-22,f99e5ec385545232
+cmn-4881-2020,custo efetivo total (substitui a 3.517),consignado;cartao,ok,False,5176,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o+CMN&numero=4881,2026-11-22,8c0140038e434e04
+cmn-4549-2017,financiamento do saldo da fatura (rotativo),cartao,ok,False,7367,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o&numero=4549,2026-11-22,4d7d1499572055ba
+cmn-5112-2023,alterações da 4.549 (Lei 14.690),cartao,ok,False,11084,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o+CMN&numero=5112,2026-11-22,8142aa5b59d2c88f
+cmn-5057-2022,portabilidade de crédito (substitui a 4.292),consignado;cartao,ok,False,19585,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o+CMN&numero=5057,2026-11-22,05da514caa623d52
+bcb-96-2021,contas de pagamento e tarifas,conta;cartao,ok,False,34275,https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o+BCB&numero=96,2026-11-22,0b69a9509e3644b6
+lei-8078-1990,CDC,todos,ok,,85745,https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm,2026-11-23,fe166ef75fc44f4d
+lei-14181-2021,superendividamento,consignado;cartao,ok,,19342,https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14181.htm,2026-11-23,0c67b83ac350ed04
+lei-14690-2023,Desenrola; limite de juros do rotativo,cartao,ok,,51927,https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14690.htm,2026-11-23,b30af532e3efc3ff
+lei-10820-2003,consignado (margem),consignado,ok,,37863,https://www.planalto.gov.br/ccivil_03/leis/2003/l10.820.htm,2026-11-23,0144cd2fb5eb495f
+lei-13709-2018,LGPD (dados pessoais no atendimento),todos,ok,,82127,https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm,2026-11-23,3a24ae2e9d153d3b
