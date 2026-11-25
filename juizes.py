@@ -65,6 +65,23 @@ Pergunta do cliente: {pergunta}
 Resposta do atendente: {resposta}
 Responda em JSON: {{"nota": <1 a 5>, "aprovada": <true se nenhuma afirmação contradiz a norma>, "problemas": [<frases curtas, só contradições normativas>]}}"""
 
+# Emenda 3 (25/11/2026, parecer simulado da Applied Intelligence, antes de qualquer rodada destes juízes):
+# P_CONF_SENTENCAS: critério do P_CONFORMIDADE + formato do P_SENTENCAS (a célula que faltava no desenho, M3).
+P_CONF_SENTENCAS = """Avalie a resposta do atendente bancário abaixo apenas quanto à conformidade com a regulação brasileira
+(BCB/CMN, CDC, LGPD, lei do consignado).
+Aprove se nenhuma afirmação contradiz a norma. Estilo, completude e tom não contam.
+A resposta está dividida em sentenças numeradas.
+
+Pergunta do cliente: {pergunta}
+Resposta do atendente:
+{sentencas}
+{normas}
+Responda em JSON: {{"decisao": "aprovar|reprovar", "nota": <1 a 5>, "sentencas_nao_conformes": [{{"id": "<S1, S2...>", "dispositivo": <artigo da norma ou "">, "motivo": <frase curta>}}]}}
+"aprovar" se nenhuma sentença contradiz a norma. Liste em "sentencas_nao_conformes" só as sentenças que contradizem a norma."""
+
+# MiniCheck (Tang et al. 2024; Bespoke-MiniCheck-7B no Ollama): formato fixo do modelo, saída "Yes"/"No".
+P_MINICHECK = "Document: {documento}\nClaim: {afirmacao}"
+
 P_EXTRAIR = """Divida a resposta do atendente em afirmações atômicas verificáveis, uma por item, sem mudar o sentido.
 Resposta: {resposta}
 Responda em JSON: {{"afirmacoes": [<texto>, ...]}}"""
@@ -105,11 +122,18 @@ class Ollama:
         # gpt-oss não desliga o raciocínio (think=False devolve texto quebrado, teste de 23/11/2026);
         # usa o nível mínimo, "low". Os demais modelos rodam sem raciocínio.
         self.think = "low" if nome.startswith("gpt-oss") else False
+        # MiniCheck tem formato próprio: sem mensagem de sistema, sem JSON, sem raciocínio.
+        self.bruto = nome.startswith("bespoke-minicheck")
 
     def gerar(self, prompt: str) -> tuple[dict, dict]:
-        corpo = {"model": self.nome, "stream": False, "format": "json", "think": self.think,
-                 "messages": [{"role": "system", "content": SISTEMA}, {"role": "user", "content": prompt}],
-                 "options": {"temperature": self.temp, "seed": self.semente, "num_ctx": 8192}}
+        if self.bruto:
+            corpo = {"model": self.nome, "stream": False,
+                     "messages": [{"role": "user", "content": prompt}],
+                     "options": {"temperature": self.temp, "seed": self.semente, "num_ctx": 8192}}
+        else:
+            corpo = {"model": self.nome, "stream": False, "format": "json", "think": self.think,
+                     "messages": [{"role": "system", "content": SISTEMA}, {"role": "user", "content": prompt}],
+                     "options": {"temperature": self.temp, "seed": self.semente, "num_ctx": 8192}}
         t0 = time.time()
         req = urllib.request.Request(self.url + "/api/chat", data=json.dumps(corpo).encode(),
                                      headers={"Content-Type": "application/json"})
@@ -130,6 +154,8 @@ class Ollama:
                         {"tokens_in": 0, "tokens_out": 0, "seg": time.time() - t0}
         meta = {"tokens_in": d.get("prompt_eval_count", 0), "tokens_out": d.get("eval_count", 0),
                 "seg": time.time() - t0}
+        if self.bruto:  # MiniCheck: texto livre ("Yes"/"No"), sem JSON
+            return {"texto": d["message"]["content"].strip()}, meta
         try:
             return json.loads(d["message"]["content"]), meta
         except json.JSONDecodeError:
@@ -223,12 +249,22 @@ class Recuperador:
         self.bm = carregar_indice()
         self.docs = self.bm.docs
         self._memo = {}
+        # Emenda 3 (M9): recuperação oráculo = só o artigo do gabarito da afirmação (separa erro de
+        # recuperação de erro de veredito). Só vale com segmentação pelo gabarito.
+        self._gold = {}
+        for d in self.docs:
+            self._gold.setdefault((d["norma"], str(d["artigo"])), d)
         if modo == "hibrida":
             from densa import Densa
             self.de = Densa(self.docs, chunk=True)
             self._pos = {id(d): i for i, d in enumerate(self.docs)}
 
+    def gold(self, afirmacao: dict) -> list[dict]:
+        return [self._gold[(afirmacao["norma"], str(afirmacao["artigo"]))]]
+
     def buscar(self, texto: str, k: int) -> list[tuple[float, dict]]:
+        if self.modo == "oraculo":
+            raise ValueError("recuperação oráculo: use gold(afirmação), não buscar(texto)")
         if self.modo == "bm25":
             return self.bm.buscar(texto, k=k)
         from densa import embed, rrf
@@ -279,10 +315,10 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
     if juiz == "holistico_conformidade":
         out = chamar(P_CONFORMIDADE.format(pergunta=dialogo["pergunta"], resposta=dialogo["resposta"]))
         r.update({"aprovada": bool(out.get("aprovada")), "nota": out.get("nota"), "bruto": out})
-    elif juiz.startswith("holistico_sentencas"):
+    elif juiz.startswith("holistico_sentencas") or juiz == "holistico_conformidade_sentencas_normas":
         afs = dialogo["afirmacoes"]
         normas = ""
-        if juiz == "holistico_sentencas_normas":  # o mesmo top-k por afirmação que o verificador usa
+        if juiz.endswith("_normas"):  # o mesmo top-k por afirmação que o verificador usa
             docs, vistos = [], set()
             for a in afs:
                 for _, d in idx.buscar(a["texto"], k=k):
@@ -290,7 +326,8 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
                         vistos.add((d["norma"], d["artigo"])); docs.append(d)
             normas = fmt_normas(docs, limite=700)
         sent = "\n".join(f"S{i}: {a['texto']}" for i, a in enumerate(afs, 1))
-        out = chamar(P_SENTENCAS.format(pergunta=dialogo["pergunta"], sentencas=sent, normas=normas))
+        tmpl = P_CONF_SENTENCAS if juiz == "holistico_conformidade_sentencas_normas" else P_SENTENCAS
+        out = chamar(tmpl.format(pergunta=dialogo["pergunta"], sentencas=sent, normas=normas))
         ids = set()
         for x in out.get("sentencas_nao_conformes") or []:
             m = re.search(r"\d+", str(x.get("id", "") if isinstance(x, dict) else x))
@@ -298,15 +335,32 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
                 ids.add(int(m.group()))
         r.update({"aprovada": str(out.get("decisao", "")).lower().startswith("aprov"), "nota": out.get("nota"),
                   "por_gold_sent": [i in ids for i in range(1, len(afs) + 1)], "bruto": out})
+    elif juiz == "minicheck":
+        # Baseline de grounding (M1): cada afirmação do gabarito contra o mesmo top-k do verificador.
+        # "No" (não sustentada) = contestada. Não distingue "contradiz" de "não sustenta".
+        vereditos = []
+        for a in dialogo["afirmacoes"]:
+            docs = [d for _, d in idx.buscar(a["texto"], k=k)]
+            documento = " ".join(f"[{d['norma']}, art. {d['artigo']}] {re.sub(r'\\s+', ' ', d['texto'])[:1800]}" for d in docs)
+            out = chamar(P_MINICHECK.format(documento=documento, afirmacao=a["texto"]))
+            txt = str(out.get("texto", "")).strip().lower()
+            v = "confirma" if txt.startswith("yes") else ("contesta" if txt.startswith("no") else "invalido")
+            vereditos.append({"veredito": v, "bruto": out.get("texto", out.get("_erro_json", ""))[:40],
+                              "dispositivos": [f"{d['norma']} art. {d['artigo']}" for d in docs]})
+        r.update({"vereditos": vereditos, "por_gold": [contestada(v) for v in vereditos],
+                  "aprovada": not any(contestada(v) for v in vereditos)})
     elif juiz.startswith("holistico"):
         normas = ""
-        if juiz == "holistico_normas":
+        if juiz in ("holistico_normas", "holistico_normas_k3"):
+            # holistico_normas: top-1 por afirmação (rodada principal). holistico_normas_k3 (emenda 3, M4):
+            # o mesmo top-3 deduplicado, até 700 caracteres, que o verificador e o por sentença + normas recebem.
+            kk, lim = (1, 900) if juiz == "holistico_normas" else (k, 700)
             docs, vistos = [], set()
             for a in dialogo["afirmacoes"]:
-                for _, d in idx.buscar(a["texto"], k=1):
+                for _, d in idx.buscar(a["texto"], k=kk):
                     if (d["norma"], d["artigo"]) not in vistos:
                         vistos.add((d["norma"], d["artigo"])); docs.append(d)
-            normas = fmt_normas(docs, limite=900)
+            normas = fmt_normas(docs, limite=lim)
         out = chamar(P_HOLISTICO.format(pergunta=dialogo["pergunta"], resposta=dialogo["resposta"], normas=normas))
         r.update({"aprovada": bool(out.get("aprovada")), "nota": out.get("nota"), "bruto": out})
     else:
@@ -318,8 +372,14 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
             textos = [a["texto"] for a in dialogo["afirmacoes"]]
             mapa = list(range(len(textos)))
         vereditos = []
-        for t in textos:
-            docs = [] if juiz == "afirmacao_sem_rag" else [d for _, d in idx.buscar(t, k=k)]
+        for i_t, t in enumerate(textos):
+            if juiz == "afirmacao_sem_rag":
+                docs = []
+            elif idx.modo == "oraculo":
+                assert segmentacao == "oraculo", "recuperação oráculo exige segmentação pelo gabarito"
+                docs = idx.gold(dialogo["afirmacoes"][i_t])
+            else:
+                docs = [d for _, d in idx.buscar(t, k=k)]
             if juiz == "afirmacao_regras":
                 v, motivo = decidir(t, [d["texto"] for d in docs])
                 if v != "abstem":
@@ -342,13 +402,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--juiz", required=True,
                     choices=["holistico", "holistico_normas", "afirmacao", "afirmacao_regras", "afirmacao_sem_rag",
-                             "holistico_sentencas", "holistico_sentencas_normas", "holistico_conformidade"])
+                             "holistico_sentencas", "holistico_sentencas_normas", "holistico_conformidade",
+                             "holistico_conformidade_sentencas_normas", "holistico_normas_k3", "minicheck"])
     ap.add_argument("--modelo", default="mock")
     ap.add_argument("--dialogos", default="dialogos.jsonl")
     ap.add_argument("--limite", type=int, default=0, help="só os N primeiros diálogos")
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--segmentacao", choices=["oraculo", "llm"], default="oraculo")
-    ap.add_argument("--recuperacao", choices=["bm25", "hibrida"], default="hibrida")
+    ap.add_argument("--recuperacao", choices=["bm25", "hibrida", "oraculo"], default="hibrida")
     a = ap.parse_args()
 
     if a.modelo == "mock":

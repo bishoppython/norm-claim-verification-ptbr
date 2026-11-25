@@ -147,3 +147,34 @@ Validação independente do gabarito por uma anotadora com formação jurídica.
 
 ### Resultado da emenda 2 e reenquadramento (24/11/2026, noite)
 Com os 4 modelos completos, a H6 foi confirmada só no qwen3.5 e no llama3.1. No gemma4 (ΔF1 +0,10 [−0,04; 0,24]) e no gpt-oss (−0,12 [−0,27; 0,02]), o IC contém zero, que é a condição pré-registrada de reenquadramento. O artigo foi reenquadrado: o holístico falha como barreira pelo **critério** (H7 em 4 de 4), ao localizar pelo **formato** e ao citar pela falta de **recuperação**. Novo título: "LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Retrieval Matter More than Claim Decomposition".
+
+## Emenda 3 (25/11/2026, antes de rodar os juízes novos no conjunto principal)
+
+**Motivo.** Parecer simulado no perfil da Applied Intelligence (`Parecer Applied Intelligence — LLM Judges as Compliance Gates in Brazilian Banki.md`, 24/11/2026). Os pontos M1, M3, M4, M8 e M9 pedem juízes e ablações que ainda não rodaram. Nenhum dos juízes abaixo foi rodado no conjunto principal quando esta emenda foi escrita. O RAGAs e o MiniCheck foram testados **só no piloto** (2 diálogos, seed 1), para conferir o formato.
+
+**Juízes e variantes novos (300 diálogos; temperatura 0, semente 42, contexto 8.192, mesmas opções de raciocínio):**
+- **holistico_conformidade_sentencas_normas** (M3; 4 modelos): critério do holístico só conformidade, formato por sentença e o mesmo top-3 por afirmação do verificador. É a célula do desenho que faltava: critério estreito + saída por sentença + normas, sem decomposição.
+- **holistico_normas_k3** (M4; 4 modelos): o holístico + normas recebendo o **top-3** por afirmação (deduplicado, até 700 caracteres), igual ao verificador, em vez do top-1.
+- **afirmacao_regras com recuperação oráculo** (M9; 4 modelos): o verificador recebe só o artigo do gabarito de cada afirmação.
+- **afirmacao_regras fim a fim** (M8; gemma4, llama3.1 e gpt-oss): segmentação pelo LLM, como já foi feito no qwen3.5.
+- **RAGAs faithfulness** (M1; 4 modelos; ragas 0.4.4 com os prompts originais, `ragas_juiz.py`): contexto = o mesmo top-3 por afirmação do holístico por sentença + normas. Aprova se todas as afirmações extraídas forem sustentadas; escore de suspeita = 1 − faithfulness. Localização: afirmação do gabarito apontada quando a afirmação extraída alinhada (Jaccard ≥ 0,5) não é sustentada.
+- **MiniCheck** (M1; Bespoke-MiniCheck-7B, Q4_K_M, no Ollama): cada afirmação do gabarito contra o mesmo top-3 do verificador; "No" = contestada; escore de suspeita = número de "No".
+
+Hashes (SHA-256/16): P_CONF_SENTENCAS a4b0eb085fae704e · P_MINICHECK c972842e14683075 · juizes.py 7449c92a5be97a77 · ragas_juiz.py b85ab2fc07eecba0.
+
+**Hipóteses e análise (fixadas aqui; família 4 = H8, família 5 = H9, família 6 = H10, Holm dentro de cada uma):**
+- **H8 (célula que faltava).** O holístico só conformidade + por sentença + normas localiza pior que o verificador (ΔF1 com IC bootstrap em dois níveis). **Regra de decisão:** se o IC contiver 0 ou favorecer o holístico em pelo menos 3 de 4 modelos, a recomendação prática passa a ser esse juiz (mais barato), e o título e a Discussão mudam. Também saem FAR-crítico no falso alarme exatamente pareado e o falso alarme da decisão binária.
+- **H3b (normas com top-3).** Com o top-3, o holístico + normas continua sem igualar o verificador: FAR-crítico no falso alarme exatamente pareado e ΔF1 de localização. Substitui a parte "normas" da H3 se o resultado mudar; o top-1 continua reportado.
+- **H9 (recuperação oráculo).** Com o artigo do gabarito, o FAR-crítico por afirmação do verificador cai em relação à recuperação híbrida (diferença pareada, bootstrap em dois níveis, por modelo). Também sai a acurácia do veredito condicionada a acerto ou erro da recuperação híbrida (artigo do gabarito no top-3 ou não).
+- **H10 (baselines externos).** O verificador localiza melhor (F1) que o RAGAs faithfulness e que o MiniCheck com o mesmo contexto. Também saem FAR-crítico no falso alarme exatamente pareado, falso alarme da decisão binária e AUC.
+- **Fim a fim (M8):** descritivo, como na Seç. 5.6 (alinhamento, FAR-crítico, falso alarme, AUC).
+- Saída inválida conta como aprovada e sem afirmação apontada (pior caso), como antes; o tratamento *fail-closed* sai em paralelo (ver abaixo).
+
+**Análises adicionais sem rodada nova de juiz.** Foram decididas depois de ver os resultados das emendas 1 e 2 e por isso saem rotuladas como exploratórias:
+1. motivos de rejeição nas respostas sem erro e número de respostas limpas com afirmações fora do foco da pergunta (M2);
+2. bootstrap em dois níveis (diálogo × fato) também no nível de resposta, permutação por cluster para os testes pareados e número de erros críticos distintos (M5);
+3. FAR-crítico em falso alarme fixo (0,05; 0,10; 0,20), VPP e carga de revisão em prevalências de 1%, 2% e 5%, e barreira de três saídas (aprovar / escalar / bloquear) com "insuficiente" = escalar (M6);
+4. FAR-crítico com a gravidade da anotadora e com a união das duas (M7);
+5. tratamento *fail-closed* das saídas inválidas (menor);
+6. sensibilidade do limiar de 40% (30% e 50%) da localização em texto livre e do Jaccard 0,5 (0,4 e 0,6) no alinhamento (menor);
+7. precisão da localização sobre as 300 respostas, contando contestações em respostas limpas (menor).
