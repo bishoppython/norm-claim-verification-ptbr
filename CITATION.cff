@@ -1,6 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
-title: "Reproduction package for \"Norm-Grounded Claim-Level Verification of LLM Answers in Brazilian Banking: Holistic Judges Can Rank but Cannot Point to the Error\""
+title: "Reproduction package for \"LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Retrieval Matter More than Claim Decomposition\""
+version: "1.1.0"
+date-released: "2026-11-25"
 type: software
 authors:
   - family-names: "Santos"

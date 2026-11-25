@@ -113,3 +113,37 @@ Nada abaixo altera as hipóteses nem as análises pré-registradas, que estão r
   - A medida automática subconta: nunca marcou "erro" indevidamente (3/3), mas perdeu as paráfrases.
   - À mão: 12% dos problemas apontam o erro, 22% acusam afirmação correta e 66% não apontam nenhuma.
   - A H5 é confirmada nas duas partes.
+
+## Emenda 2 (24/11/2026, antes de rodar os juízes novos)
+
+**Motivo.** Revisão do orientador (Prof. Carlo): o holístico pode ir mal por causa da **saída em texto livre** ou do **critério amplo** do prompt ("correção e adequação"), e não por ser holístico. A emenda testa as duas explicações. Nenhum dos juízes abaixo tinha sido rodado no conjunto principal quando ela foi escrita; os prompts foram testados só em 3 diálogos para conferir o formato.
+
+**Juízes novos (4 modelos × 300 diálogos; mesmas opções de decodificação):**
+- **holistico_sentencas:** critério igual ao do holístico; a resposta vem em sentenças numeradas (S1…Sn = afirmações do gabarito), e a saída é {decisao, nota, sentencas_nao_conformes: [{id, dispositivo, motivo}]}.
+- **holistico_sentencas_normas:** o mesmo, com o top-3 por afirmação da recuperação híbrida, igual ao do verificador (trechos de até 700 caracteres; prompts de até ~3.400 tokens no teste, abaixo de 8.192).
+- **holistico_conformidade:** formato igual ao do holístico; critério restrito: "Aprove se nenhuma afirmação contradiz a norma. Estilo, completude e tom não contam. Liste problemas só se houver contradição normativa."
+
+Hashes (SHA-256/16): P_SENTENCAS f251e43fd9cd00c1 · P_CONFORMIDADE 029599b361a2c328 · juizes.py 07a94f35e97e398c.
+
+**Hipóteses e análise (fixadas aqui):**
+- **H6 (formato).** Com saída por sentença, o holístico localiza pior que o verificador. Medida única de localização para todos os juízes, só nas respostas com erro:
+  - precisão = sentenças apontadas que são erros reais;
+  - recall = erros apontados.
+  O resultado sai com IC bootstrap pareado por modelo. **Se o holístico por sentença com normas alcançar o verificador** (IC da diferença de F1 contendo 0, ou a favor do holístico), o artigo é reenquadrado: o problema era a saída em texto livre.
+- **H7 (critério).** O prompt restrito à conformidade reduz o falso alarme do holístico. Teste: McNemar exato pareado nas 120 respostas sem erro, holístico contra holístico_conformidade, por modelo, com Holm na família 3 (4 modelos).
+- Para todos os juízes também saem FAR-crítico, falso alarme e AUC, como na análise principal. JSON inválido conta como aprovado e sem sentença apontada (pior caso).
+
+### Registro posterior à emenda 2 (24/11/2026, antes de analisar os juízes locais da emenda)
+- **Claude Haiku 5.5 (exploratório).** Todos os juízes, menos o "sem recuperação", rodaram também no Claude Haiku 5.5 pela Batch API, com raciocínio desligado e amostragem padrão (a API não aceita temperatura): 1.639 pedidos únicos, US$ 0,39. 22 respostas (1,3%) atingiram o limite de 1.024 tokens e contam como JSON inválido (pior caso). O Haiku **não entra** nas famílias de testes (H1–H7, Holm); é relatado à parte como checagem de escala.
+- **Erro ambíguo (item 1d).** O erro plantado "O limite do consignado CLT é 35% da sua remuneração" (F26) é ambíguo: há um sublimite de 35% para empréstimos no art. 1º, § 1º da Lei 10.820. Os 6 diálogos que o contêm não são reescritos. Toda métrica sai também **sem esses 6 diálogos** (sensibilidade). Detalhes em [[revisao-normativa-1d]].
+- **Bloco 2 do orientador (análises adicionais, rotuladas como tal):**
+  - bootstrap em dois níveis (diálogo × fato) nas métricas por afirmação;
+  - FAR-crítico a falso alarme exatamente pareado, por limiar aleatorizado no envelope convexo da ROC;
+  - localização única para todos os juízes (precisão, recall e F1 nas respostas com erro) e acurácia de citação.
+  Script: `experimento/analise_emenda2.py`.
+
+### Segundo anotador (24/11/2026, depois da emenda 2)
+Validação independente do gabarito por uma anotadora com formação jurídica. Ela confirmou 58 dos 61 fatos (3 "parcialmente": F13, F24, F38) e 79 dos 84 erros (5 "ambíguos": F06, F13, F26, F58, F59). Nas rejeitadas, 40 de 42 frases contestadas pelos juízes estão corretas e 2 são ambíguas. A gravidade teve κ = 0,40 [0,17; 0,62]: a anotadora marcou como crítica 13 fatos que classificamos como não críticos (o contrário aconteceu em 4). A análise de sensibilidade da revisão 1d foi ampliada para excluir os 15 diálogos com os 5 erros ambíguos. Esta é uma decisão posterior aos dados e é reportada como exploratória.
+
+### Resultado da emenda 2 e reenquadramento (24/11/2026, noite)
+Com os 4 modelos completos, a H6 foi confirmada só no qwen3.5 e no llama3.1. No gemma4 (ΔF1 +0,10 [−0,04; 0,24]) e no gpt-oss (−0,12 [−0,27; 0,02]), o IC contém zero, que é a condição pré-registrada de reenquadramento. O artigo foi reenquadrado: o holístico falha como barreira pelo **critério** (H7 em 4 de 4), ao localizar pelo **formato** e ao citar pela falta de **recuperação**. Novo título: "LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Retrieval Matter More than Claim Decomposition".

@@ -19,6 +19,7 @@ Saída: resultados/<juiz>__<modelo>.jsonl, um diálogo por linha; retoma de onde
 import argparse
 import hashlib
 import json
+import os
 import random
 import re
 import time
@@ -40,6 +41,29 @@ Pergunta do cliente: {pergunta}
 Resposta do atendente: {resposta}
 {normas}
 Responda em JSON: {{"nota": <1 a 5>, "aprovada": <true se pode ir ao cliente sem correção>, "problemas": [<frases curtas>]}}"""
+
+# Emenda 2 (24/11/2026, sugestões do orientador, antes de qualquer rodada destes juízes):
+# P_SENTENCAS: holístico com saída por sentença numerada (critério igual ao P_HOLISTICO; muda só o formato).
+# P_CONFORMIDADE: holístico restrito à conformidade (mesmo formato do P_HOLISTICO; muda só o critério).
+P_SENTENCAS = """Avalie a resposta do atendente bancário abaixo quanto à correção perante a regulação brasileira
+(BCB/CMN, CDC, LGPD, lei do consignado) e à adequação ao cliente.
+A resposta está dividida em sentenças numeradas.
+
+Pergunta do cliente: {pergunta}
+Resposta do atendente:
+{sentencas}
+{normas}
+Responda em JSON: {{"decisao": "aprovar|reprovar", "nota": <1 a 5>, "sentencas_nao_conformes": [{{"id": "<S1, S2...>", "dispositivo": <artigo da norma ou "">, "motivo": <frase curta>}}]}}
+"aprovar" se a resposta pode ir ao cliente sem correção. Liste em "sentencas_nao_conformes" só as sentenças que precisam ser corrigidas."""
+
+P_CONFORMIDADE = """Avalie a resposta do atendente bancário abaixo apenas quanto à conformidade com a regulação brasileira
+(BCB/CMN, CDC, LGPD, lei do consignado).
+Aprove se nenhuma afirmação contradiz a norma. Estilo, completude e tom não contam.
+Liste problemas só se houver contradição normativa.
+
+Pergunta do cliente: {pergunta}
+Resposta do atendente: {resposta}
+Responda em JSON: {{"nota": <1 a 5>, "aprovada": <true se nenhuma afirmação contradiz a norma>, "problemas": [<frases curtas, só contradições normativas>]}}"""
 
 P_EXTRAIR = """Divida a resposta do atendente em afirmações atômicas verificáveis, uma por item, sem mudar o sentido.
 Resposta: {resposta}
@@ -110,6 +134,42 @@ class Ollama:
             return json.loads(d["message"]["content"]), meta
         except json.JSONDecodeError:
             return {"_erro_json": d["message"]["content"][:500]}, meta
+
+
+class HaikuLote:
+    """Claude Haiku 5.5 pela Batch API, em duas fases (ver haiku_lote.py; chave lida só lá).
+
+    modo "gravar": registra cada prompt em resultados/haiku_pendentes.jsonl e devolve um marcador
+    (que não entra no cache nem nas saídas: a fase 1 escreve num arquivo descartável).
+    modo "ler": devolve a resposta do lote (resultados/haiku_respostas.jsonl), por hash do prompt.
+    Sem raciocínio (thinking desligado), como os modelos locais; a API não aceita temperatura.
+    """
+    nome = "claude-haiku-5-5"
+    temp = semente = None
+
+    def __init__(self, modo: str):
+        self.modo = modo
+        self.pend = RES / "haiku_pendentes.jsonl"
+        self.resp = {}
+        if modo == "ler" and (RES / "haiku_respostas.jsonl").exists():
+            for l in (RES / "haiku_respostas.jsonl").open(encoding="utf-8"):
+                x = json.loads(l)
+                self.resp[x["h"]] = (x["out"], x["meta"])
+
+    @staticmethod
+    def h(prompt):
+        return hashlib.sha256((SISTEMA + "\x00" + prompt).encode()).hexdigest()[:32]
+
+    def gerar(self, prompt: str) -> tuple[dict, dict]:
+        h = self.h(prompt)
+        if self.modo == "gravar":
+            with self.pend.open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"h": h, "prompt": prompt}, ensure_ascii=False) + "\n")
+            return {"_erro_json": "pendente"}, {"tokens_in": 0, "tokens_out": 0, "seg": 0.0}
+        if h not in self.resp:
+            return {"_erro_json": "sem_resposta_no_lote"}, {"tokens_in": 0, "tokens_out": 0, "seg": 0.0}
+        out, meta = self.resp[h]
+        return json.loads(json.dumps(out)), dict(meta)
 
 
 # ----------------------------------------------------------------- cache
@@ -216,7 +276,29 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
         return out
 
     r = {"id": dialogo["id"], "juiz": juiz, "modelo": getattr(modelo, "modelo", modelo).nome, "segmentacao": segmentacao}
-    if juiz.startswith("holistico"):
+    if juiz == "holistico_conformidade":
+        out = chamar(P_CONFORMIDADE.format(pergunta=dialogo["pergunta"], resposta=dialogo["resposta"]))
+        r.update({"aprovada": bool(out.get("aprovada")), "nota": out.get("nota"), "bruto": out})
+    elif juiz.startswith("holistico_sentencas"):
+        afs = dialogo["afirmacoes"]
+        normas = ""
+        if juiz == "holistico_sentencas_normas":  # o mesmo top-k por afirmação que o verificador usa
+            docs, vistos = [], set()
+            for a in afs:
+                for _, d in idx.buscar(a["texto"], k=k):
+                    if (d["norma"], d["artigo"]) not in vistos:
+                        vistos.add((d["norma"], d["artigo"])); docs.append(d)
+            normas = fmt_normas(docs, limite=700)
+        sent = "\n".join(f"S{i}: {a['texto']}" for i, a in enumerate(afs, 1))
+        out = chamar(P_SENTENCAS.format(pergunta=dialogo["pergunta"], sentencas=sent, normas=normas))
+        ids = set()
+        for x in out.get("sentencas_nao_conformes") or []:
+            m = re.search(r"\d+", str(x.get("id", "") if isinstance(x, dict) else x))
+            if m:
+                ids.add(int(m.group()))
+        r.update({"aprovada": str(out.get("decisao", "")).lower().startswith("aprov"), "nota": out.get("nota"),
+                  "por_gold_sent": [i in ids for i in range(1, len(afs) + 1)], "bruto": out})
+    elif juiz.startswith("holistico"):
         normas = ""
         if juiz == "holistico_normas":
             docs, vistos = [], set()
@@ -259,7 +341,8 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--juiz", required=True,
-                    choices=["holistico", "holistico_normas", "afirmacao", "afirmacao_regras", "afirmacao_sem_rag"])
+                    choices=["holistico", "holistico_normas", "afirmacao", "afirmacao_regras", "afirmacao_sem_rag",
+                             "holistico_sentencas", "holistico_sentencas_normas", "holistico_conformidade"])
     ap.add_argument("--modelo", default="mock")
     ap.add_argument("--dialogos", default="dialogos.jsonl")
     ap.add_argument("--limite", type=int, default=0, help="só os N primeiros diálogos")
@@ -268,12 +351,23 @@ def main():
     ap.add_argument("--recuperacao", choices=["bm25", "hibrida"], default="hibrida")
     a = ap.parse_args()
 
-    modelo = Cache(Mock() if a.modelo == "mock" else Ollama(a.modelo))
+    if a.modelo == "mock":
+        base = Mock()
+    elif a.modelo.startswith("claude-haiku"):
+        base = HaikuLote(os.environ.get("HAIKU_MODO", "ler"))
+    else:
+        base = Ollama(a.modelo)
+    modelo = Cache(base)
+    if a.modelo.startswith("claude-haiku") and base.modo == "gravar":
+        modelo.ativo = False
     modelo.nome = modelo.modelo.nome
     idx = Recuperador(a.recuperacao)
     RES.mkdir(exist_ok=True)
     rotulo = re.sub(r"[^a-zA-Z0-9.-]+", "-", a.modelo)
     saida = RES / f"{a.juiz}__{rotulo}__{a.segmentacao}__{a.recuperacao}__{Path(a.dialogos).stem}.jsonl"
+    if not modelo.ativo and getattr(base, "modo", "") == "gravar":  # fase 1 do Haiku: saída descartável
+        saida = Path(os.environ.get("TMPDIR", "/tmp")) / f"_haiku_gravar__{a.juiz}.jsonl"
+        saida.unlink(missing_ok=True)
     feitos = {json.loads(l)["id"] for l in saida.open(encoding="utf-8")} if saida.exists() else set()
     dialogos = [json.loads(l) for l in (AQUI / a.dialogos).open(encoding="utf-8")]
     if a.limite:

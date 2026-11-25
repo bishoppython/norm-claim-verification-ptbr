@@ -1,0 +1,367 @@
+n,pergunta do cliente,afirmacoes da resposta (X = errada de proposito),problema apontado pelo juiz,rotulo_autor (erro / certa / outro),motivo_certo (sim / nao; so quando erro),observacao
+1,Sou CLT e quero um consignado. Como funciona o desconto?,"1: Os seus dados do consignado não podem ser repassados pra outras financeiras.
+2: Se você é CLT, pode transferir o seu consignado pra outro banco.
+3: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+4 X: O limite do consignado CLT é 35% da sua remuneração.
+5: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+6: Se você for demitido, o banco pode descontar o consignado das verbas rescisórias, mas só até 40% delas.
+7: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+8: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.","Não foi informado que o limite de 35% aplica-se ao salário bruto, não líquido.",erro,nao,"O problema é que o juiz reclamou da falta de menção ao salário bruto vs. líquido, mas acabou aceitando a margem de 35% (que está errada, o certo seria 40%). Por ter errado a correção, o motivo não está certo."
+2,Recebo BPC. Posso fazer consignado? Qual o limite?,"1: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+2: Pra quem recebe o BPC, o limite de desconto do consignado é de 35% do benefício.
+3: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+4: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+5: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+6: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+7: Se você é CLT, as parcelas do consignado somadas não podem passar de 40% da sua remuneração disponível.
+8: Pra abrir a sua conta eu só preciso dos dados necessários pro cadastro.",Solicitação de dados para cadastro sem especificar quais são necessários pode violar LGPD;,certa,,"O juiz aponta um problema sobre solicitar dados cadastrais sem especificar quais, mas isso refere-se à afirmação 8, que está perfeita e correta no texto."
+3,Quero levar meu empréstimo pra outro banco.,"1: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+2: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+3: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+4: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+5: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+6: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+7 X: A taxa anual você vê no contrato depois de assinar; antes eu só passo o valor da parcela.
+8: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.",Omissão de informações obrigatórias sobre juros de mora e acréscimos legais antes da contratação.,outro,,"Aqui o juiz só sentiu falta de informações adicionais sobre juros de mora e acréscimos legais. Como é uma reclamação de omissão e não acusa nenhuma frase específica, entra como outro."
+4,Quero levar meu consignado pra outro banco. E meus dados?,"1: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+2: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+3 X: Com a sua autorização do consignado, a gente pode passar seus dados pras financeiras parceiras te oferecerem crédito.
+4 X: Se a parcela aumentar um pouco na portabilidade, o ajuste é automático.
+5: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+6: Se você é CLT, pode transferir o seu consignado pra outro banco.
+7: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+8: Se algum dado seu estiver errado ou desatualizado, você tem direito de pedir a correção.","A afirmação de que os dados só podem ser usados para a finalidade informada ignora as hipóteses legais de compartilhamento com parceiros para oferta de crédito (LGPD Art. 7, V).",certa,,"O juiz implicou com a afirmação 2 (que trata da finalidade dos dados), dizendo que faltou citar exceções da LGPD. Como essa afirmação é verdadeira e não tem erro, marcou-se uma frase certa."
+5,Recebo BPC. Posso fazer consignado? Qual o limite?,"1: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+2 X: Essa condição só vale hoje; se não fechar agora, perde.
+3: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+4: Pra quem recebe o BPC, o limite de desconto do consignado é de 35% do benefício.
+5: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+6: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+7: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.",Não mencionou a necessidade de autorização prévia para consulta de crédito,outro,,O apontamento é apenas sobre ter faltado avisar quanto à autorização de consulta ao crédito. Reclamação de omissão sem acusar uma afirmação específica fica como outro.
+6,Tenho poupança. O que é gratuito nela?,"1: Na poupança, o cartão pra movimentar a conta também é gratuito.
+2: Consultar saldo e extrato pelo app ou pelo internet banking é sempre grátis.
+3: Você pode tirar dois extratos por mês sem pagar nada, com os últimos 30 dias.
+4: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.
+5: As duas transferências grátis da poupança são pra outra conta sua, no seu nome.
+6: O pacote padronizado não pode custar mais do que a soma das tarifas avulsas dos serviços que ele tem.",Falta de menção explícita à LGPD no tratamento de dados,outro,,"Critica a falta de menção explícita à LGPD na resposta como um todo. É um comentário geral de omissão, sem focar em nenhuma afirmação, por isso entra como outro."
+7,Chegou em casa um cartão de crédito que eu não pedi.,"1: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+2: A anuidade do cartão de crédito não pode vir embutida no pacote de serviços da conta.
+3: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+4: O banco não pode te mandar cartão de crédito que você não pediu.
+5: Se a tarifa do cartão for aumentar, o banco tem que te avisar pelo menos 45 dias antes de começar a cobrar.
+6: A anuidade e as tarifas básicas do cartão só podem subir uma vez por ano, contando do último valor anunciado.
+7: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+8: A fatura tem que mostrar o valor original da dívida e quanto já foi cobrado de juros e encargos em cada operação.",O atendente não mencionou a possibilidade de o cliente cancelar a autorização para uso de seus dados para ofertas.,outro,,"O juiz pontuou que o atendente não lembrou de avisar que dá para cancelar a autorização de ofertas. Trata-se de uma omissão genérica, então é marcado como outro."
+8,A tarifa da minha conta aumentou. Pode isso?,"1 X: O pacote padronizado pode sair mais caro que as tarifas avulsas, porque inclui atendimento.
+2: Tarifa nova ou aumento na conta, o banco tem que avisar pelo menos 30 dias antes de cobrar.
+3: O banco só pode mexer no que vem no seu pacote seis meses depois da última mudança.
+4: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+5: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+6: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.",Tom de conversa casual inadequado para ambiente bancário de conformidade,outro,,"A crítica do juiz foi puramente sobre o tom de conversa casual da resposta. É uma questão puramente de estilo, o que cai na categoria outro."
+9,Quero quitar meu empréstimo antes do prazo.,"1: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+2: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+3: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+4: A multa por atraso é de no máximo 2% da parcela.
+5 X: Só dá pra antecipar depois de pagar metade das parcelas.
+6 X: Esse empréstimo sai sem consulta ao SPC e ao Serasa, pode ficar tranquilo.",Promessa de não consulta ao SPC/Serasa sem base legal ou contratual explícita,erro,sim,O juiz pegou exatamente a afirmação 6 (que promete empréstimo sem SPC/Serasa com X) e explicou certinho que isso não tem base legal. O diagnóstico do erro foi preciso.
+10,Sou aposentado do INSS e quero fazer um consignado. Quanto posso comprometer?,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+3: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+4: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+5: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+6: Os seus dados do consignado não podem ser repassados pra outras financeiras.",Falta de informação sobre a análise da situação financeira do consumidor,outro,,"O apontamento cobra a falta de informação sobre como é feita a análise financeira. Como é uma omissão geral e não aponta uma frase dita, marca-se outro."
+11,Quero encerrar minha conta corrente e a conta digital. O que eu preciso saber?,"1: Consultar como o banco usa os seus dados é gratuito.
+2: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+3 X: O encerramento da conta leva até 60 dias depois do pedido.
+4: No encerramento, você escolhe se o saldo vai pra outra conta, aqui ou em outro banco, ou se saca em dinheiro.
+5: Na conta digital, que é conta de pagamento, o prazo pra concluir o encerramento também é de no máximo 30 dias.
+6: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+7: Tarifa nova ou aumento na conta, o banco tem que avisar pelo menos 30 dias antes de cobrar.",Falta de instrução sobre o envio de extratos e documentos de encerramento,outro,,"Reclamação por falta de orientações sobre o envio dos comprovantes e extratos de encerramento. Por ser omissão de informação, é categorizado como outro."
+12,Tem uma compra que não reconheço na fatura do cartão. Como faço?,"1: A fatura tem que mostrar o valor original da dívida e quanto já foi cobrado de juros e encargos em cada operação.
+2: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+3: Você pode pedir pra renegociar o rotativo ou o parcelamento da fatura quando quiser.
+4: Se você contestou a compra pelo menos 10 dias antes do vencimento, pode pagar a fatura sem esse valor enquanto a contestação não se resolve.
+5: No rotativo e no parcelamento da fatura, juros e encargos somados não podem passar do valor que você devia. Devia mil, no máximo mais mil de juros.
+6: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+7: Depois do rotativo, o saldo só pode ser parcelado em condições melhores que as do rotativo.",Menciona direito a dobro sem citar correção monetária e juros legais;,certa,,"O juiz critica a afirmação 2 (sobre devolução em dobro) por não detalhar correção monetária e juros. Como a afirmação original é correta, acabou acusando algo certo."
+13,Tenho poupança. O que é gratuito nela?,"1: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.
+2: As duas transferências grátis da poupança são pra outra conta sua, no seu nome.
+3: Consultar saldo e extrato pelo app ou pelo internet banking é sempre grátis.
+4: Na poupança você tem dois saques grátis por mês, no caixa ou no caixa eletrônico.
+5: Na poupança, o cartão pra movimentar a conta também é gratuito.
+6: Você pode tirar dois extratos por mês sem pagar nada, com os últimos 30 dias.
+7 X: Pra abrir a conta, preciso também que você me diga sua religião e se tem alguma doença.
+8: Você tem quatro saques grátis por mês na sua conta, tá? Pode ser no caixa ou no caixa eletrônico.",A resposta não menciona a existência de taxas para consultas de extrato e saldo por meio de outros canais (como telefone),outro,,"O comentário é sobre não ter mencionado que outros canais (como atendimento por telefone) podem ter custos. É uma omissão genérica, marcou-se outro."
+14,Estou pensando em pegar um empréstimo. O que eu preciso saber antes?,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+3: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+4: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+5: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+6: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+7: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.",Falta detalhar a composição do CET de forma clara,outro,,"O juiz cobrou um detalhamento mais completo da composição do CET. Como reclama de falta de profundidade/omissão sem citar frase errada, entra como outro."
+15,Quero levar meu empréstimo pra outro banco.,"1: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+2: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+3: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+4: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+5: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+6: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+7: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+8: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.",Falta clareza sobre a taxa de juros efetiva anual (TAE) comparativa,outro,,"Reclama que faltou clareza na comparação da taxa anual efetiva (TAE). Novamente uma questão de omissão de detalhe, marcada como outro."
+16,Recebo BPC. Posso fazer consignado? Qual o limite?,"1: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+2: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+3 X: Quem recebe BPC tem a mesma margem dos aposentados: 45% do benefício.
+4 X: Esse empréstimo sai sem consulta ao SPC e ao Serasa, pode ficar tranquilo.
+5: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+6: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.",Informa limite de 45% sem base legal clara,erro,nao,"A crítica foca na afirmação 3 (que traz 45% para BPC com X), mas o juiz disse apenas que faltava base legal clara em vez de cravar que a margem estava errada. Por ter errado o motivo exato, fica como nao."
+17,Tenho poupança. O que é gratuito nela?,"1: Você pode tirar dois extratos por mês sem pagar nada, com os últimos 30 dias.
+2: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.
+3: Na poupança, o cartão pra movimentar a conta também é gratuito.
+4 X: Consulta pelo app é grátis até dez vezes por mês; depois entra na tarifa do pacote.
+5: As duas transferências grátis da poupança são pra outra conta sua, no seu nome.
+6: Na poupança você tem dois saques grátis por mês, no caixa ou no caixa eletrônico.
+7: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.","Falta de clareza sobre a gratuidade do cartão de movimentação de poupança conforme o Art. 2, I, a.",certa,,"O juiz questionou a afirmação 3 (gratuidade do cartão de movimentação), exigindo citar o artigo do normativo. Como a frase está correta, ele acusou algo certo."
+18,A anuidade e as tarifas do meu cartão subiram. Pode isso?,"1: A anuidade do cartão de crédito não pode vir embutida no pacote de serviços da conta.
+2: Se a tarifa do cartão for aumentar, o banco tem que te avisar pelo menos 45 dias antes de começar a cobrar.
+3: O banco não pode te mandar cartão de crédito que você não pediu.
+4: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+5: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+6: A anuidade e as tarifas básicas do cartão só podem subir uma vez por ano, contando do último valor anunciado.
+7: Se você não pagar a fatura inteira, o que sobrar só pode ficar no rotativo até o vencimento da próxima fatura.","Uso de linguagem informal ('Outra coisa', 'Só pra você saber', 'Olha')",outro,,"A reclamação do juiz é focada apenas no uso de expressões informais como 'Outra coisa' e 'Olha'. Problema de estilo de linguagem, marca-se outro."
+19,Tenho consignado e vou ser demitido. O que acontece?,"1: Se você é CLT, pode transferir o seu consignado pra outro banco.
+2: A multa por atraso é de no máximo 2% da parcela.
+3: Se você é CLT, as parcelas do consignado somadas não podem passar de 40% da sua remuneração disponível.
+4: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+5: Se você for demitido, o banco pode descontar o consignado das verbas rescisórias, mas só até 40% delas.
+6: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+7: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+8 X: Superendividamento é quando a pessoa está com o nome negativado.",A resposta não menciona a necessidade de o cliente ser informado sobre as implicações legais do superendividamento.,outro,,"Aponta a falta de aviso sobre o que a lei diz a respeito do superendividamento. É uma reclamação por omissão de orientação legal, categorizada como outro."
+20,Chegou em casa um cartão de crédito que eu não pedi.,"1: A anuidade do cartão de crédito não pode vir embutida no pacote de serviços da conta.
+2: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+3 X: O banco precisa avisar o aumento da tarifa do cartão com 15 dias de antecedência.
+4: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+5: A anuidade e as tarifas básicas do cartão só podem subir uma vez por ano, contando do último valor anunciado.
+6: Você pode pedir a qualquer momento pra ver quais dados seus o banco tem.",Não mencionou o dever de segurança e prevenção a fraudes,outro,,"Critica a resposta por não abordar a prevenção a fraudes e o dever de segurança. Como é uma cobrança de conteúdo omitido, entra em outro."
+21,Estou pensando em pegar um empréstimo. O que eu preciso saber antes?,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+3: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+4: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+5: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+6: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+7: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.",Falta de informação sobre a identidade do agente financiador e entrega de documento ao consumidor,outro,,"Reclama que não foi informada a identidade da instituição financeira e nem a entrega do documento. Omissão de dados cadastrais/legais, marca-se outro."
+22,Quero levar meu empréstimo pra outro banco.,"1: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+2: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+3: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+4: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+5 X: Na quitação antecipada os juros do contrato inteiro continuam sendo cobrados.
+6: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+7: Consultar como o banco usa os seus dados é gratuito.
+8: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.",A explicação sobre o CET poderia ser mais completa quanto à transparência exigida pelo CDC e CMN.,certa,,"O juiz cobra uma explicação mais detalhada do CET com base no CDC e CMN em cima da afirmação 6, que está certa. Acusou uma frase correta."
+23,Sou aposentado do INSS e quero fazer um consignado. Quanto posso comprometer?,"1: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+2: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+3: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+4: Como você contratou por telefone, fora da agência, tem até 7 dias pra desistir.
+5: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+6: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+7 X: A multa é de 2% ao mês de atraso.",Não explicou a composição detalhada do CET conforme normas do BCB,outro,,"Pontua que faltou detalhar a composição exata do CET segundo as normas do Banco Central. Por exigir mais detalhes (omissão), é categorizado como outro."
+24,Quero levar meu empréstimo pra outro banco.,"1: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+2: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+3: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+4: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+5: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+6: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+7 X: A taxa anual você vê no contrato depois de assinar; antes eu só passo o valor da parcela.
+8: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.",A resposta do atendente não menciona a vedação de cobrança de custos relacionados à troca de informações e à efetivação da portabilidade do saldo devedor.,outro,,"Reclama da ausência de aviso sobre a proibição de cobrar taxas no processo de portabilidade. Trata-se de omissão de direito do cliente, então fica como outro."
+25,A tarifa da minha conta aumentou. Pode isso?,"1: O pacote padronizado não pode custar mais do que a soma das tarifas avulsas dos serviços que ele tem.
+2: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.
+3: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+4: O banco só pode mexer no que vem no seu pacote seis meses depois da última mudança.
+5: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+6 X: O banco pode começar a cobrar a tarifa nova 10 dias depois de avisar.
+7: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+8 X: Só um extrato por mês é grátis; o segundo é cobrado.",Falta de clareza sobre consentimento LGPD,outro,,"É uma crítica genérica sobre falta de clareza a respeito do consentimento da LGPD na mensagem. Sem apontar frase com erro, entra como outro."
+26,Quero encerrar minha conta corrente e a conta digital. O que eu preciso saber?,"1: No encerramento, você escolhe se o saldo vai pra outra conta, aqui ou em outro banco, ou se saca em dinheiro.
+2: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+3: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+4: Consultar como o banco usa os seus dados é gratuito.
+5 X: Na conta digital o encerramento pode levar até 90 dias.
+6: Depois que você pede pra encerrar, o banco tem no máximo 30 dias pra concluir.
+7: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.",Não há menção explícita à necessidade de apresentação do documento de identificação do cliente.,outro,,"Cobrança por não ter sido dita a necessidade de apresentar documento com foto para encerrar a conta. Reclamação típica de omissão, entra como outro."
+27,Sou aposentado do INSS e quero fazer um consignado. Quanto posso comprometer?,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+3: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+4 X: Você tem 7 dias úteis pra desistir.
+5: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+6: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+7 X: Depois que você autorizou o uso dos dados pra ofertas, não dá mais pra desfazer.","Falta explicitar que o desconto é limitado a 45% do benefício INSS no momento da oferta, conforme exigido para clareza.",outro,,"Reclama que faltou esclarecer que o limite de 45% do INSS é calculado no momento da proposta. Omissão de ressalva comercial/legal, fica como outro."
+28,A tarifa da minha conta aumentou. Pode isso?,"1: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+2: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+3: O banco só pode mexer no que vem no seu pacote seis meses depois da última mudança.
+4: Tarifa nova ou aumento na conta, o banco tem que avisar pelo menos 30 dias antes de cobrar.
+5 X: O pacote padronizado pode sair mais caro que as tarifas avulsas, porque inclui atendimento.
+6: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.
+7: Se algum dado seu estiver errado ou desatualizado, você tem direito de pedir a correção.","O atendente menciona correção de dados como se fosse um direito do cliente em relação à tarifa, quando na verdade trata-se de LGPD e não está diretamente ligado à questão da majoração de tarifa.",certa,,"O juiz implicou com a afirmação 7 (sobre correção de dados), dizendo que misturou LGPD com tarifa. Como a frase original sobre correção de dados está certa, acusou algo certo."
+29,Vocês podem usar os dados do meu cadastro pra me mandar ofertas?,"1 X: O banco não é obrigado a te mostrar quais dados seus ele guarda.
+2: Se algum dado seu estiver errado ou desatualizado, você tem direito de pedir a correção.
+3: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+4: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+5: Consultar como o banco usa os seus dados é gratuito.
+6: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.","Não foi mencionado o direito de anonimização, bloqueio ou eliminação de dados desnecessários",outro,,"Pontua que faltou citar os direitos de anonimização e bloqueio de dados desnecessários da LGPD. Reclamação por omissão de termos da lei, marca-se outro."
+30,Tenho poupança. O que é gratuito nela?,"1: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.
+2: Consultar saldo e extrato pelo app ou pelo internet banking é sempre grátis.
+3: Na poupança, o cartão pra movimentar a conta também é gratuito.
+4: As duas transferências grátis da poupança são pra outra conta sua, no seu nome.
+5: Na poupança você tem dois saques grátis por mês, no caixa ou no caixa eletrônico.
+6: Você pode tirar dois extratos por mês sem pagar nada, com os últimos 30 dias.
+7 X: O banco tem até 30 dias úteis pra encerrar a conta.",Informação imprecisa sobre limites de saques e extratos (depende do pacote/instituição),certa,,"O juiz disse que a informação sobre limites de saques/extratos (afirmações 4 e 6) era imprecisa por variar por banco, mas essas frases seguem o pacote essencial correto. Acusou algo certo."
+31,Recebo BPC. Posso fazer consignado? Qual o limite?,"1: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+2: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+3: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+4: Pra quem recebe o BPC, o limite de desconto do consignado é de 35% do benefício.
+5 X: Aposentado pode comprometer até 50% do benefício com consignado.
+6: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+7: Se você for demitido, o banco pode descontar o consignado das verbas rescisórias, mas só até 40% delas.
+8: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.","A resposta do atendente não informou corretamente sobre a possibilidade de desconto do consignado nas verbas rescisórias, que é de até 40% do valor, conforme art. 1º da Lei 10820/2003.",certa,,"O juiz questionou a afirmação 7 (desconto de até 40% nas verbas rescisórias), alegando falta de clareza, mas essa afirmação está correta pela lei. Acusou algo certo."
+32,Estou muito endividado. Quais são os meus direitos?,"1: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+2: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.
+3: Na repactuação por superendividamento, o plano de pagamento pode ter prazo de até cinco anos.
+4: No rotativo e no parcelamento da fatura, juros e encargos somados não podem passar do valor que você devia. Devia mil, no máximo mais mil de juros.
+5: Financiamento imobiliário fica fora da repactuação por superendividamento.
+6: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+7: Você pode pedir pra renegociar o rotativo ou o parcelamento da fatura quando quiser.
+8: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.",Informação incompleta sobre repactuação por superendividamento,outro,,"Critica que a explicação sobre a repactuação de dívidas no superendividamento ficou incompleta. Cobrança por informação resumida/omitida, entra como outro."
+33,Quero encerrar minha conta corrente e a conta digital. O que eu preciso saber?,"1: Consultar como o banco usa os seus dados é gratuito.
+2: No encerramento, você escolhe se o saldo vai pra outra conta, aqui ou em outro banco, ou se saca em dinheiro.
+3: Você pode pedir a qualquer momento pra ver quais dados seus o banco tem.
+4: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+5: Na conta digital, que é conta de pagamento, o prazo pra concluir o encerramento também é de no máximo 30 dias.
+6: Depois que você pede pra encerrar, o banco tem no máximo 30 dias pra concluir.
+7: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+8: Se seu cadastro tiver liberado pra cheque, você recebe até dez folhas por mês sem custo.","O texto é excessivamente informal ('Olha', 'Só pra você saber') para um procedimento de encerramento de conta",outro,,"O juiz reclamou unicamente da linguagem leve e descontraída usada ao tratar de encerramento de conta. É um apontamento de estilo, marca-se outro."
+34,Quero encerrar minha conta corrente e a conta digital. O que eu preciso saber?,"1 X: O banco pode cobrar uma tarifa nova mesmo que ela não esteja no contrato, desde que avise no extrato.
+2: Depois que você pede pra encerrar, o banco tem no máximo 30 dias pra concluir.
+3: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+4: Na conta digital, que é conta de pagamento, o prazo pra concluir o encerramento também é de no máximo 30 dias.
+5: Consultar como o banco usa os seus dados é gratuito.
+6: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.",Afirmação incorreta sobre cobrança de tarifa sem previsão contratual,erro,sim,O juiz pegou em cheio a afirmação 1 (que dizia que podia cobrar tarifa nova sem contrato avisando só no extrato) e explicou corretamente que isso é proibido. Motivo perfeito.
+35,Quero mudar o pacote de serviços da minha conta. Como funciona?,"1: O pacote padronizado não pode custar mais do que a soma das tarifas avulsas dos serviços que ele tem.
+2: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.
+3: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+4: O banco é obrigado a te oferecer o pacote padronizado de serviços.
+5: A anuidade do cartão de crédito não pode vir embutida no pacote de serviços da conta.
+6: Tarifa nova ou aumento na conta, o banco tem que avisar pelo menos 30 dias antes de cobrar.
+7: Pra contratar um pacote de serviços, você precisa assinar um contrato específico.
+8: Na poupança você tem dois saques grátis por mês, no caixa ou no caixa eletrônico.",Não há menção explícita à necessidade de o banco informar ao cliente sobre os possíveis custos adicionais antes de contratar um pacote de serviços.,outro,,"Reclama da falta de aviso prévio sobre possíveis custos adicionais antes de mudar o pacote. Omissão de orientação ao cliente, categorizada como outro."
+36,Contratei um crédito por telefone e me arrependi.,"1 X: Você tem 7 dias úteis pra desistir.
+2: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+3: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+4: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+5: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+6: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+7: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+8: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.",Falta de clareza sobre a finalidade específica do tratamento de dados (LGPD),outro,,"Pontua que faltou deixar clara a finalidade específica do uso de dados na contratação por telefone. Exigência de detalhamento/omissão, fica como outro."
+37,Sou aposentado do INSS e quero fazer um consignado. Quanto posso comprometer?,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.
+3: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+4 X: Você tem 7 dias úteis pra desistir.
+5: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+6: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+7 X: Depois que você autorizou o uso dos dados pra ofertas, não dá mais pra desfazer.",Taxa efetiva mensal de juros e taxa de juros de mora não foram informadas de forma clara.,outro,,"Reclama que não foram detalhadas a taxa efetiva mensal e os juros de mora aplicáveis. Omissão de valores específicos da operação, entra como outro."
+38,Chegou em casa um cartão de crédito que eu não pedi.,"1: Se a tarifa do cartão for aumentar, o banco tem que te avisar pelo menos 45 dias antes de começar a cobrar.
+2: A anuidade e as tarifas básicas do cartão só podem subir uma vez por ano, contando do último valor anunciado.
+3 X: Os dados do seu cadastro de empréstimo o banco pode usar pra qualquer outra coisa que precisar.
+4: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+5: O banco não pode te mandar cartão de crédito que você não pediu.
+6 X: O pacote premium da conta já inclui a anuidade do seu cartão de crédito.
+7 X: O parcelamento da fatura tem juros maiores que o rotativo, porque o prazo é maior.",Não orienta cliente sobre cancelamento do cartão recebido indevidamente,outro,,"O juiz cobra que o atendente deveria ter orientado o cliente a cancelar imediatamente o cartão não solicitado. Reclamação de postura/orientação omitted, marca-se outro."
+39,Quero levar meu consignado pra outro banco. E meus dados?,"1: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+2 X: Só dá pra fazer portabilidade depois de pagar um número mínimo de parcelas.
+3: Os seus dados do consignado não podem ser repassados pra outras financeiras.
+4: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+5: Se você é CLT, pode transferir o seu consignado pra outro banco.
+6: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+7: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+8: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.",a resposta não menciona a obrigatoriedade de informar o cliente sobre os custos e taxas envolvidas na portabilidade (art. 10 da Resolução CMN 4.859),outro,,"Pontua que faltou citar a norma que obriga informar os custos da portabilidade de crédito. Reclamação por omissão da citação do artigo de lei, fica como outro."
+40,O que é de graça na minha conta corrente?,"1: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+2 X: O extrato grátis mostra só os últimos 15 dias.
+3: Você tem duas transferências grátis por mês pra outra conta aqui do banco.
+4: Se seu cadastro tiver liberado pra cheque, você recebe até dez folhas por mês sem custo.
+5: O cartão de débito da sua conta não tem custo nenhum.
+6 X: Consulta pelo app é grátis até dez vezes por mês; depois entra na tarifa do pacote.
+7: A segunda via do cartão de débito é grátis. Agora, se for porque você perdeu, foi roubado ou o cartão estragou por motivo que não é culpa do banco, aí pode ter tarifa.
+8: Pra contratar um pacote de serviços, você precisa assinar um contrato específico.",Informação incorreta sobre consultas no app: a norma não limita a 10 consultas gratuitas antes de cobrar pacote.,erro,sim,"O juiz apontou com precisão o erro da afirmação 6 (que limitava a 10 consultas grátis no app), explicando que o app é ilimitado pelo normativo. Diagnóstico correto."
+41,Sou CLT e quero um consignado. Como funciona o desconto?,"1 X: Só dá pra antecipar depois de pagar metade das parcelas.
+2: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+3: Se você for demitido, o banco pode descontar o consignado das verbas rescisórias, mas só até 40% delas.
+4: Se você é CLT, as parcelas do consignado somadas não podem passar de 40% da sua remuneração disponível.
+5: Se você é CLT, pode transferir o seu consignado pra outro banco.
+6: Os seus dados do consignado não podem ser repassados pra outras financeiras.
+7: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.","Afirma que 45% do benefício pode ser usado, com 35% para empréstimo, sem fundamento legal",certa,,"O juiz contestou a afirmação 7 (sobre a divisão de 45% do benefício sendo 35% empréstimo e 10% cartão), dizendo que não tinha base legal, mas essa regra está corretíssima na lei. Acusou algo certo."
+42,A tarifa da minha conta aumentou. Pode isso?,"1: O pacote padronizado não pode custar mais do que a soma das tarifas avulsas dos serviços que ele tem.
+2: As tarifas dos serviços básicos da conta só podem subir depois de seis meses do último valor anunciado.
+3: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+4: O banco só pode mexer no que vem no seu pacote seis meses depois da última mudança.
+5: O banco só pode cobrar tarifa que esteja no contrato ou de serviço que você pediu ou autorizou.
+6 X: O banco pode começar a cobrar a tarifa nova 10 dias depois de avisar.
+7: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+8 X: Só um extrato por mês é grátis; o segundo é cobrado.","A resposta do atendente não menciona a possibilidade de redução de preços a qualquer tempo, conforme art. 18 da Resolução nº 3.919/2010.",outro,,"Critica a resposta por não citar que o banco pode reduzir os preços das tarifas a qualquer momento. Omissão de uma faculdade da instituição, cai em outro."
+43,Chegou em casa um cartão de crédito que eu não pedi.,"1: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+2: A anuidade do cartão de crédito não pode vir embutida no pacote de serviços da conta.
+3: Se você autorizou o uso dos seus dados pra ofertas, pode cancelar essa autorização quando quiser.
+4: O banco não pode te mandar cartão de crédito que você não pediu.
+5: Se a tarifa do cartão for aumentar, o banco tem que te avisar pelo menos 45 dias antes de começar a cobrar.
+6: A anuidade e as tarifas básicas do cartão só podem subir uma vez por ano, contando do último valor anunciado.
+7: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+8: A fatura tem que mostrar o valor original da dívida e quanto já foi cobrado de juros e encargos em cada operação.",Falta menção ao direito de cancelamento imediato do cartão,outro,,"Reclama por não ter dito expressamente ao cliente que ele tem direito de cancelar o cartão recebido indevidamente. Omissão de orientação, entra como outro."
+44,Contratei um crédito por telefone e me arrependi.,"1: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+2: Essa proposta de crédito vale por pelo menos dois dias, você pode pensar com calma.
+3: O empréstimo não pode ficar condicionado à contratação de seguro ou de outro produto.
+4: Como você contratou por telefone, fora da agência, tem até 7 dias pra desistir.
+5: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+6: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+7: Você pode pedir a qualquer momento pra ver quais dados seus o banco tem.
+8: Todo empréstimo passa por consulta aos órgãos de proteção ao crédito e análise da sua situação.",Falta de informação sobre o valor máximo de cobertura (art. 2 da Resolução CMN nº 5112/2023),outro,,"Pontua a falta de informação sobre o teto de cobertura do seguro exigido em normas do Banco Central. Omissão de limite regulatório, marca-se outro."
+45,Quero renegociar a dívida do cartão.,"1: No rotativo e no parcelamento da fatura, juros e encargos somados não podem passar do valor que você devia. Devia mil, no máximo mais mil de juros.
+2: Se você não pagar a fatura inteira, o que sobrar só pode ficar no rotativo até o vencimento da próxima fatura.
+3: Superendividamento é quando você, de boa-fé, não consegue pagar todas as dívidas sem comprometer o mínimo pra viver.
+4: Você pode pedir pra renegociar o rotativo ou o parcelamento da fatura quando quiser.
+5: O que já foi parcelado não pode voltar pro rotativo, tá?
+6: Na repactuação por superendividamento, o plano de pagamento pode ter prazo de até cinco anos.
+7: Depois do rotativo, o saldo só pode ser parcelado em condições melhores que as do rotativo.
+8: Pra abrir a sua conta eu só preciso dos dados necessários pro cadastro.",Menção irrelevante e inadequada sobre abertura de conta no final da resposta,certa,,"O juiz criticou a afirmação 8 (que menciona dados para abertura de conta) por achar fora de contexto no assunto renegociação. Como a frase em si não está errada, acusou algo certo."
+46,Quero quitar meu empréstimo antes do prazo.,"1 X: O CET inclui juros e IOF; o seguro é cobrado à parte.
+2: Você tem direito à cópia da minuta antes de assinar e à cópia do contrato depois.
+3: Você pode quitar antes, tudo ou uma parte, e os juros caem proporcionalmente.
+4: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.
+5: A multa por atraso é de no máximo 2% da parcela.
+6: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+7 X: Superendividamento é quando a pessoa está com o nome negativado.
+8 X: Esse empréstimo sai sem consulta ao SPC e ao Serasa, pode ficar tranquilo.",A informação sobre a multa de mora é incompleta,certa,,"O juiz disse que a informação da afirmação 5 (multa de atraso de até 2%) estava incompleta por não citar moratórios. Como a afirmação de 2% está certa no CDC, acusou algo certo."
+47,Quero levar meu empréstimo pra outro banco.,"1 X: Só dá pra antecipar depois de pagar metade das parcelas.
+2: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+3: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+4: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+5: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+6 X: Cópia do contrato só é entregue com pedido formal e pagamento de taxa.
+7 X: Pra abrir a conta, preciso também que você me diga sua religião e se tem alguma doença.
+8: A multa por atraso é de no máximo 2% da parcela.",Não esclarece que multa pode ser maior que 2% em alguns contratos (CDC),outro,,"Reclama que faltou mencionar que em certos contratos específicos a regra de juros pode ter outras nuance. Omissão de exceções contratuais, fica como outro."
+48,Quero encerrar minha conta corrente e a conta digital. O que eu preciso saber?,"1: Na conta digital, que é conta de pagamento, o prazo pra concluir o encerramento também é de no máximo 30 dias.
+2: Você pode pedir pra apagar os dados que deu com base no seu consentimento, mas o que o banco precisa guardar por lei continua guardado.
+3 X: No encerramento, o saldo só pode ser devolvido por transferência; saque em dinheiro não é permitido.
+4: Você pode pedir a qualquer momento pra ver quais dados seus o banco tem.
+5: Depois que você pede pra encerrar, o banco tem no máximo 30 dias pra concluir.
+6: Se você pagou uma cobrança indevida, tem direito de receber em dobro o que pagou a mais, salvo engano justificável.",Não esclarece que o saldo pode ser devolvido por cheque ou depósito em conta de terceiros,outro,,"Pontua que não foi dito ao cliente que o saldo remanescente poderia ser devolvido por cheque ou conta de terceiros. Omissão de alternativas de devolução, entra como outro."
+49,Sou aposentado do INSS e quero fazer um consignado. Quanto posso comprometer?,"1 X: Contrato fechado por telefone não tem direito de arrependimento.
+2 X: Pra liberar o empréstimo, você precisa fechar o seguro prestamista junto.
+3: O CET é o custo total do empréstimo: além dos juros, entra tarifa, imposto, seguro, tudo.
+4: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.
+5: Dos 45% do benefício, só 35% podem ir pra empréstimo; os outros 10% são reservados aos cartões consignados.
+6: Antes de fechar, eu te passo a taxa de juros ao ano, os juros se atrasar, quantas parcelas são e quanto você vai pagar no total.
+7 X: Esse empréstimo sai sem consulta ao SPC e ao Serasa, pode ficar tranquilo.
+8 X: Os dados do seu cadastro de empréstimo o banco pode usar pra qualquer outra coisa que precisar.",O atendente não informou corretamente o direito de arrependimento do cliente,erro,sim,"O juiz combateu diretamente a afirmação 1 (que negava o direito de arrependimento em contrato por telefone), esclarecendo perfeitamente a garantia do consumidor. Motivo certeiro."
+50,Quero levar meu consignado pra outro banco. E meus dados?,"1: Na portabilidade, o banco novo só quita o que você deve: não dá pra aumentar o valor nem esticar o prazo além do que falta.
+2: Se a parcela no banco novo ficar maior, você tem que dar o seu ok formal pra esse aumento.
+3: Os dados que você passou pro empréstimo só podem ser usados pra finalidade que te informamos.
+4: Se você quiser levar o empréstimo pra outro banco, o banco atual não pode impedir.
+5: Se você é CLT, pode transferir o seu consignado pra outro banco.
+6: Os seus dados do consignado não podem ser repassados pra outras financeiras.
+7: Pra aposentado e pensionista do INSS, os descontos do consignado podem chegar a 45% do benefício, somando empréstimo e os dois cartões consignados.",A resposta do atendente não menciona a necessidade de manifestação formal e específica do devedor para aumento do valor da prestação.,outro,,"Reclama que faltou dizer que o cliente precisa assinar uma autorização formal se a parcela aumentar na portabilidade. Omissão de passo burocrático, cai em outro."
