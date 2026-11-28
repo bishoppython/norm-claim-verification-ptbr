@@ -1,0 +1,114 @@
+{
+  "n": 100,
+  "invalidos": [],
+  "rotulador": {
+    "erro": {
+      "n": 18,
+      "prop": 0.18,
+      "ic95": [
+        0.117,
+        0.267
+      ]
+    },
+    "certa": {
+      "n": 56,
+      "prop": 0.56,
+      "ic95": [
+        0.462,
+        0.653
+      ]
+    },
+    "outro": {
+      "n": 26,
+      "prop": 0.26,
+      "ic95": [
+        0.184,
+        0.354
+      ]
+    }
+  },
+  "erro_e_diz_errada": {
+    "n": 13,
+    "ic95": [
+      0.078,
+      0.21
+    ]
+  },
+  "certa_e_diz_errada": {
+    "n": 16,
+    "ic95": [
+      0.101,
+      0.244
+    ]
+  },
+  "rotulador_x_autor_50": {
+    "kappa": 0.483,
+    "acordo": 0.66,
+    "confusao_rot_x_autor": {
+      "erro": {
+        "erro": 6,
+        "certa": 0,
+        "outro": 3
+      },
+      "certa": {
+        "erro": 0,
+        "certa": 11,
+        "outro": 14
+      },
+      "outro": {
+        "erro": 0,
+        "certa": 0,
+        "outro": 16
+      }
+    }
+  },
+  "rotulador_x_auto_100": {
+    "kappa": 0.333,
+    "acordo": 0.54,
+    "confusao_rot_x_auto": {
+      "erro": {
+        "erro": 11,
+        "certa": 1,
+        "outro": 6
+      },
+      "certa": {
+        "erro": 1,
+        "certa": 18,
+        "outro": 37
+      },
+      "outro": {
+        "erro": 0,
+        "certa": 1,
+        "outro": 25
+      }
+    }
+  },
+  "por_origem": {
+    "auditoria_autor": {
+      "erro": 9,
+      "certa": 25,
+      "outro": 16
+    },
+    "nova": {
+      "certa": 31,
+      "erro": 9,
+      "outro": 10
+    }
+  },
+  "por_juiz": {
+    "holistico": {
+      "certa": 25,
+      "outro": 17,
+      "erro": 7
+    },
+    "holistico_conformidade": {
+      "erro": 2,
+      "certa": 4
+    },
+    "holistico_normas": {
+      "certa": 27,
+      "erro": 9,
+      "outro": 9
+    }
+  }
+}

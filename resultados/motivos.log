@@ -1,0 +1,10 @@
+=== motivos 27/11 18:14
+holistico qwen3.5-9b 423 {'contradicao': 0.35, 'omissao': 0.44, 'relevancia': 0.12, 'estilo': 0.06, 'outro': 0.02}
+holistico gemma4-12b 603 {'contradicao': 0.06, 'omissao': 0.65, 'relevancia': 0.11, 'estilo': 0.17, 'outro': 0.01}
+holistico llama3.1-8b 521 {'contradicao': 0.03, 'omissao': 0.84, 'relevancia': 0.06, 'estilo': 0.07, 'outro': 0.01}
+holistico gpt-oss-20b 615 {'contradicao': 0.13, 'omissao': 0.74, 'relevancia': 0.07, 'estilo': 0.03, 'outro': 0.02}
+holistico_conformidade qwen3.5-9b 257 {'contradicao': 0.37, 'omissao': 0.25, 'relevancia': 0.38, 'estilo': 0.0, 'outro': 0.0}
+holistico_conformidade gemma4-12b 63 {'contradicao': 0.71, 'omissao': 0.16, 'relevancia': 0.13, 'estilo': 0.0, 'outro': 0.0}
+holistico_conformidade llama3.1-8b 160 {'contradicao': 0.28, 'omissao': 0.47, 'relevancia': 0.24, 'estilo': 0.0, 'outro': 0.01}
+holistico_conformidade gpt-oss-20b 49 {'contradicao': 0.71, 'omissao': 0.06, 'relevancia': 0.18, 'estilo': 0.0, 'outro': 0.04}
+=== fim motivos 27/11 19:15

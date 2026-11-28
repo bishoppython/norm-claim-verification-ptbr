@@ -1,7 +1,7 @@
 # LLM judges as compliance gates in Brazilian banking (norm-grounded claim-level verification)
 
-Reproduction package for *LLM Judges as Compliance Gates in Brazilian Banking:
-Criterion, Output Format and Retrieval Matter More than Claim Decomposition* (submitted to Applied Intelligence).
+Reproduction package for *Configuring LLM Judges as Compliance Gates in Brazilian Banking:
+Criterion and Output Format Close the Gap to Claim-Level Verification* (submitted to Applied Intelligence).
 
 Code comments and data are in Brazilian Portuguese; the dialogues are synthetic and contain no personal data.
 
@@ -13,9 +13,14 @@ Code comments and data are in Brazilian Portuguese; the dialogues are synthetic 
 | `dialogos.jsonl` | Main set: 300 stratified synthetic dialogues (seeds 101–103) with claim-level ground truth |
 | `piloto.jsonl` | 30-dialogue pilot (seed 1), not used in the analysis |
 | `resultados/` | Every judge output (4 models × 8 judges + end-to-end; Claude Haiku 5.5 × 7 judges), logs, prompt caches, `analise.md`/`analise.json` (main analysis), `analise_emenda2.md`/`.json` (amendment 2, localisation, two-level CIs, convex-hull comparison, sensitivity), `concordancia_anotador.md` |
-| `anotador/` | Ground-truth validation spreadsheet as filled by the independent annotator (item comments in Portuguese) |
+| `anotador/` | Ground-truth validation spreadsheet as filled by the independent annotator (item comments in Portuguese); amendment-3 labelling spreadsheets as filled (`localizacao_rotulador.xlsx`, independent labeller; `motivos_rotulador.xlsx`, first author) and their keys (`*_chave.csv`) |
 | `auditoria_h5*.csv` | Manual check of 50 holistic problems (first author) and the matching automatic labels |
-| `PREREGISTRATION.md` | Preregistration as frozen before the main run, with amendments 1 and 2 and the post-run notes |
+| `PREREGISTRATION.md` | Preregistration as frozen before the main run, with amendments 1–3 and the post-run notes |
+
+## Changes in v1.2.0
+- Amendment 3 (pushed before its first run): configured holistic judge (compliance-only criterion, per-sentence output, norms), holistic + norms with top-3 retrieval, oracle retrieval for the verifier, end-to-end claim extraction on all four models, and two off-the-shelf checkers: RAGAs faithfulness 0.4.4 (`ragas_juiz.py`, run in a separate environment with `ragas==0.4.4`) and Bespoke-MiniCheck-7B via Ollama (`rodar_emenda3.sh`).
+- `analise_emenda3.py`: H8–H10 and H3b with two-level bootstrap and Holm correction, cost and latency, operating points, fail-closed and severity sensitivity analyses.
+- Reasons for rejection (`classificar_motivos.py`, `comparar_motivos.py`) and an independent relabelling of the localisation audit (`preparar_planilhas.py`, `concordancia_localizacao.py`).
 
 ## Changes in v1.1.0
 - Amendment 2: three holistic variants (compliance-only criterion, per-sentence output, per-sentence output with norms) on all four open models.
@@ -36,6 +41,7 @@ python regras.py --avaliar dialogos.jsonl --oraculo
 python analise.py                          # preregistered analysis -> resultados/analise.md
 python analise_emenda2.py                  # amendment 2 and block-2 analyses -> resultados/analise_emenda2.md
 python concordancia_anotador.py anotador/validacao_gabarito_preenchida.xlsx
+python analise_emenda3.py                  # amendment 3 -> resultados/analise_emenda3.md
 python figura_curvas.py                    # Fig. 1
 ```
 

@@ -1,0 +1,62 @@
+{
+  "n": 60,
+  "sem_rotulo_manual": [],
+  "sem_classe_auto": [],
+  "acordo": 0.833,
+  "kappa": 0.75,
+  "omissao_vs_resto": {
+    "acordo": 0.883,
+    "kappa": 0.767
+  },
+  "dist_manual": {
+    "contradicao": 16,
+    "omissao": 29,
+    "relevancia": 4,
+    "estilo": 11,
+    "outro": 0
+  },
+  "dist_auto": {
+    "contradicao": 13,
+    "omissao": 30,
+    "relevancia": 9,
+    "estilo": 8,
+    "outro": 0
+  },
+  "confusao_manual_x_auto": {
+    "contradicao": {
+      "contradicao": 12,
+      "omissao": 1,
+      "relevancia": 3,
+      "estilo": 0,
+      "outro": 0
+    },
+    "omissao": {
+      "contradicao": 1,
+      "omissao": 26,
+      "relevancia": 2,
+      "estilo": 0,
+      "outro": 0
+    },
+    "relevancia": {
+      "contradicao": 0,
+      "omissao": 0,
+      "relevancia": 4,
+      "estilo": 0,
+      "outro": 0
+    },
+    "estilo": {
+      "contradicao": 0,
+      "omissao": 3,
+      "relevancia": 0,
+      "estilo": 8,
+      "outro": 0
+    },
+    "outro": {
+      "contradicao": 0,
+      "omissao": 0,
+      "relevancia": 0,
+      "estilo": 0,
+      "outro": 0
+    }
+  }
+}

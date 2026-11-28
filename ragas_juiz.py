@@ -27,6 +27,7 @@ sys.path.insert(0, str(AQUI))
 from juizes import Recuperador, alinhar, fmt_normas  # noqa: E402
 
 RES = AQUI / "resultados"
+LIMITE_SEG = 1800
 
 
 def contexto(dialogo, idx, k=3):
@@ -43,8 +44,13 @@ async def julgar(metric, dialogo, ctx):
     row = {"user_input": dialogo["pergunta"], "response": dialogo["resposta"], "retrieved_contexts": ctx}
     t0 = time.time()
     try:
-        st = (await metric._create_statements(row, None)).statements
-        ver = (await metric._create_verdicts(row, st, None)).statements if st else []
+        async def _rodar():
+            st = (await metric._create_statements(row, None)).statements
+            return st, ((await metric._create_verdicts(row, st, None)).statements if st else [])
+        # limite por diálogo (desvio declarado, 27/11/2026): sem ele, uma geração descontrolada no Ollama
+        # (o contexto desliza e a geração não termina) trava a fila; estouro = exceção = pior caso.
+        # 1.800 s ficam acima do máximo observado antes (878 s no qwen3.5), então não muda o que já rodou.
+        st, ver = await asyncio.wait_for(_rodar(), timeout=LIMITE_SEG)
         erro = None
     except Exception as e:  # saída que o ragas não consegue analisar: pior caso (aprovada, nada apontado)
         st, ver, erro = [], [], f"{type(e).__name__}: {str(e)[:200]}"

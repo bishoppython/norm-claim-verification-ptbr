@@ -1,0 +1,676 @@
+=== qwen3.5:9b holistico_conformidade_sentencas_normas (M3) 25/11 00:09:42
+holistico_conformidade_sentencas_normas / qwen3.5:9b: 300 pendentes de 300 -> holistico_conformidade_sentencas_normas__qwen3.5-9b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== llama3.1:8b holistico_conformidade_sentencas_normas (M3) 25/11 02:23:12
+holistico_conformidade_sentencas_normas / llama3.1:8b: 300 pendentes de 300 -> holistico_conformidade_sentencas_normas__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gemma4:12b holistico_conformidade_sentencas_normas (M3) 25/11 03:05:35
+holistico_conformidade_sentencas_normas / gemma4:12b: 300 pendentes de 300 -> holistico_conformidade_sentencas_normas__gemma4-12b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gpt-oss:20b holistico_conformidade_sentencas_normas (M3) 25/11 04:50:56
+holistico_conformidade_sentencas_normas / gpt-oss:20b: 300 pendentes de 300 -> holistico_conformidade_sentencas_normas__gpt-oss-20b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== qwen3.5:9b afirmacao_regras oraculo (M9) 25/11 06:18:58
+afirmacao_regras / qwen3.5:9b: 300 pendentes de 300 -> afirmacao_regras__qwen3.5-9b__oraculo__oraculo__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== llama3.1:8b afirmacao_regras oraculo (M9) 25/11 06:29:03
+afirmacao_regras / llama3.1:8b: 300 pendentes de 300 -> afirmacao_regras__llama3.1-8b__oraculo__oraculo__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gemma4:12b afirmacao_regras oraculo (M9) 25/11 06:36:23
+afirmacao_regras / gemma4:12b: 300 pendentes de 300 -> afirmacao_regras__gemma4-12b__oraculo__oraculo__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gpt-oss:20b afirmacao_regras oraculo (M9) 25/11 06:50:01
+afirmacao_regras / gpt-oss:20b: 300 pendentes de 300 -> afirmacao_regras__gpt-oss-20b__oraculo__oraculo__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== bespoke-minicheck (M1) 25/11 07:03:48
+minicheck / bespoke-minicheck: 300 pendentes de 300 -> minicheck__bespoke-minicheck__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== qwen3.5:9b holistico_normas_k3 (M4) 25/11 07:24:25
+holistico_normas_k3 / qwen3.5:9b: 300 pendentes de 300 -> holistico_normas_k3__qwen3.5-9b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== llama3.1:8b holistico_normas_k3 (M4) 25/11 08:51:29
+holistico_normas_k3 / llama3.1:8b: 300 pendentes de 300 -> holistico_normas_k3__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  10/300
+  20/300
+  30/300
+  40/300
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 1)
+  150/300
+  160/300
+  TIMEOUT llama3.1:8b (tentativa 1)
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  220/300
+  230/300
+  240/300
+  250/300
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  TIMEOUT llama3.1:8b (tentativa 1)
+  TIMEOUT llama3.1:8b (tentativa 2)
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gemma4:12b holistico_normas_k3 (M4) 25/11 12:22:12
+holistico_normas_k3 / gemma4:12b: 300 pendentes de 300 -> holistico_normas_k3__gemma4-12b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gpt-oss:20b holistico_normas_k3 (M4) 25/11 14:38:19
+holistico_normas_k3 / gpt-oss:20b: 300 pendentes de 300 -> holistico_normas_k3__gpt-oss-20b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== llama3.1:8b afirmacao_regras fim a fim (M8) 25/11 16:11:43
+afirmacao_regras / llama3.1:8b: 300 pendentes de 300 -> afirmacao_regras__llama3.1-8b__llm__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gemma4:12b afirmacao_regras fim a fim (M8) 25/11 21:12:16
+afirmacao_regras / gemma4:12b: 300 pendentes de 300 -> afirmacao_regras__gemma4-12b__llm__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gpt-oss:20b afirmacao_regras fim a fim (M8) 26/11 04:17:31
+afirmacao_regras / gpt-oss:20b: 300 pendentes de 300 -> afirmacao_regras__gpt-oss-20b__llm__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== qwen3.5:9b ragas (M1) 26/11 10:27:30
+ragas / qwen3.5:9b: 300 pendentes de 300 -> ragas__qwen3.5-9b__oraculo__hibrida__dialogos.jsonl
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt n_l_i_statement_prompt failed to parse output: The output parser failed to parse the output including retries.
+  10/300
+  20/300
+  30/300
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt n_l_i_statement_prompt failed to parse output: The output parser failed to parse the output including retries.
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt n_l_i_statement_prompt failed to parse output: The output parser failed to parse the output including retries.
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt n_l_i_statement_prompt failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt fix_output_format failed to parse output: The output parser failed to parse the output including retries.
+Prompt n_l_i_statement_prompt failed to parse output: The output parser failed to parse the output including retries.
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== llama3.1:8b ragas (M1) 26/11 21:32:48
+ragas / llama3.1:8b: 300 pendentes de 300 -> ragas__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+=== gemma4:12b ragas (M1) 27/11 00:42:17
+ragas / gemma4:12b: 300 pendentes de 300 -> ragas__gemma4-12b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== gpt-oss:20b ragas (M1) 27/11 08:12:43
+ragas / gpt-oss:20b: 300 pendentes de 300 -> ragas__gpt-oss-20b__oraculo__hibrida__dialogos.jsonl
+  10/300
+  20/300
+  30/300
+  40/300
+  50/300
+  60/300
+  70/300
+  80/300
+  90/300
+  100/300
+  110/300
+  120/300
+  130/300
+  140/300
+  150/300
+  160/300
+  170/300
+  180/300
+  190/300
+  200/300
+  210/300
+  220/300
+  230/300
+  240/300
+  250/300
+  260/300
+  270/300
+  280/300
+  290/300
+  300/300
+=== fim 27/11 15:10:23
+=== llama3.1:8b ragas retomada (M1) 27/11 15:12:25
+ragas / llama3.1:8b: 144 pendentes de 300 -> ragas__llama3.1-8b__oraculo__hibrida__dialogos.jsonl
+  10/144
+  20/144
+  30/144
+  40/144
+  50/144
+  60/144
+  70/144
+  80/144
+  90/144
+  100/144
+  110/144
+  120/144
+  130/144
+  140/144
+  144/144

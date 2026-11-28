@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
-title: "Reproduction package for \"LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Retrieval Matter More than Claim Decomposition\""
-version: "1.1.0"
-date-released: "2026-11-25"
+title: "Reproduction package for \"Configuring LLM Judges as Compliance Gates in Brazilian Banking: Criterion and Output Format Close the Gap to Claim-Level Verification\""
+version: "1.2.0"
+date-released: "2026-11-28"
 type: software
 authors:
   - family-names: "Santos"
