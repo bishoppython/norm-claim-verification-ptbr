@@ -1,7 +1,7 @@
 # LLM judges as compliance gates in Brazilian banking (norm-grounded claim-level verification)
 
 Reproduction package for *Configuring LLM Judges as Compliance Gates in Brazilian Banking:
-Criterion and Output Format Close the Gap to Claim-Level Verification* (submitted to Applied Intelligence).
+Criterion, Output Format and Norms Narrow the Gap to Claim-Level Verification* (submitted to Applied Intelligence).
 
 Code comments and data are in Brazilian Portuguese; the dialogues are synthetic and contain no personal data.
 
@@ -16,6 +16,10 @@ Code comments and data are in Brazilian Portuguese; the dialogues are synthetic 
 | `anotador/` | Ground-truth validation spreadsheet as filled by the independent annotator (item comments in Portuguese); amendment-3 labelling spreadsheets as filled (`localizacao_rotulador.xlsx`, independent labeller; `motivos_rotulador.xlsx`, first author) and their keys (`*_chave.csv`) |
 | `auditoria_h5*.csv` | Manual check of 50 holistic problems (first author) and the matching automatic labels |
 | `PREREGISTRATION.md` | Preregistration as frozen before the main run, with amendments 1–3 and the post-run notes |
+
+## Changes in v1.2.1
+- Revised manuscript title ("narrow" instead of "close" the gap).
+- `tost_h8.py`: exploratory, not preregistered equivalence test (TOST, 90% bootstrap intervals) of the configured holistic judge against the verifier, for localisation F1 and FAR-critical at exactly matched false alarm (`resultados/tost_h8.md`).
 
 ## Changes in v1.2.0
 - Amendment 3 (pushed before its first run): configured holistic judge (compliance-only criterion, per-sentence output, norms), holistic + norms with top-3 retrieval, oracle retrieval for the verifier, end-to-end claim extraction on all four models, and two off-the-shelf checkers: RAGAs faithfulness 0.4.4 (`ragas_juiz.py`, run in a separate environment with `ragas==0.4.4`) and Bespoke-MiniCheck-7B via Ollama (`rodar_emenda3.sh`).

@@ -22,7 +22,7 @@ JUIZES = [("holistico", "Holistic", "#1c5cab", "o", "-"),
           ("holistico_normas", "Holistic + norms", "#b4461a", "s", "--"),
           ("afirmacao", "Claim-level, no rules", "#6b3fa0", "D", ":"),
           ("holistico_conformidade", "Holistic, compliance only", "#d55181", "v", "-."),
-          ("afirmacao_regras", "Claim-level + rules (proposed)", "#0b7a52", "^", "-"),
+          ("afirmacao_regras", "Claim-level + rules (verifier)", "#0b7a52", "^", "-"),
           ("holistico_conformidade_sentencas_normas", "Configured holistic", "#9a6a00", "P", (0, (5, 1.5, 1, 1.5)))]
 
 

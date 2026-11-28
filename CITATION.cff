@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this package, please cite it as below."
-title: "Reproduction package for \"Configuring LLM Judges as Compliance Gates in Brazilian Banking: Criterion and Output Format Close the Gap to Claim-Level Verification\""
-version: "1.2.0"
+title: "Reproduction package for \"Configuring LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Norms Narrow the Gap to Claim-Level Verification\""
+version: "1.2.1"
 date-released: "2026-11-28"
 type: software
 authors:
