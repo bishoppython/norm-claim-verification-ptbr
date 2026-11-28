@@ -92,6 +92,8 @@ def apontadas(r, d):
                 m = re.search(r"\d+", str(x.get("id", "")))
                 if m:
                     cit[int(m.group())] = x.get("dispositivo") or None
+        if "mapa" in r:  # emenda 4: frases compostas; a citação da frase vale para cada afirmação dela
+            return [(bool(f), next((cit[s] for s in sorted(ss) if cit.get(s)), None)) for f, ss in zip(r["por_gold_sent"], r["mapa"])]
         return [(bool(f), cit.get(k + 1)) for k, f in enumerate(r["por_gold_sent"])]
     probs = [M._tok(p) for p in (r.get("bruto", {}).get("problemas") or [])]
     out = []

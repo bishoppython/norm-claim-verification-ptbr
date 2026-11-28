@@ -184,3 +184,24 @@ Hashes (SHA-256/16): P_CONF_SENTENCAS a4b0eb085fae704e · P_MINICHECK c972842e14
 **Desvio (27/11/2026, 00:45): limite de tempo no RAGAs.** No llama3.1, um diálogo entrou em geração descontrolada no Ollama: o contexto desliza e a geração não termina, e ficou mais de 40 min sem resposta, contra no máximo 100 s nos outros diálogos desse modelo. O `ragas_juiz.py` passou a ter um limite de 1.800 s por diálogo; o estouro vira exceção e conta como pior caso, pela regra já fixada (aprovada, nada apontado). O limite fica acima do máximo observado antes (878 s, no qwen3.5), então nada do que já tinha rodado muda. O processo do llama foi interrompido e retomado do ponto onde parou depois do gemma4 e do gpt-oss (o script pula os diálogos já feitos). Hash novo do `ragas_juiz.py`: 7f55ed1d001ec57f (era b85ab2fc07eecba0).
 
 **Análise exploratória pós-parecer (28/11/2026, NÃO pré-registrada): TOST da H8** (`experimento/tost_h8.py`). Equivalência se o IC 90% bootstrap da diferença ficar dentro de [−δ, +δ]. ΔF1 (configurado − verificador): qwen3.5 [−0,24; −0,03], gemma4 [+0,02; +0,26], llama3.1 [−0,65; −0,38], gpt-oss [−0,16; +0,11] → equivalência em ±0,10 em nenhum modelo. ΔFAR-crítico no falso alarme pareado: [−0,02; +0,12], [−0,03; +0,01], [+0,24; +0,42], [−0,05; +0,04] → equivalência em ±0,05 no gemma4 e no gpt-oss. A regra de decisão continua disparada como pré-registrada, mas o texto passa a dizer "não claramente pior, a menor custo" em vez de "empata". Título ajustado: "Configuring LLM Judges as Compliance Gates in Brazilian Banking: Criterion, Output Format and Norms Narrow the Gap to Claim-Level Verification".
+
+## Emenda 4 (28/11/2026, antes de qualquer rodada nas respostas compostas)
+
+**Motivo.** Observação do Prof. Carlo depois da emenda 3: no benchmark cada frase da resposta é uma afirmação, e o juiz configurado (agora a recomendação) recebe a resposta já numerada por afirmação, isto é, recebe pronta a segmentação. Em respostas reais uma frase carrega várias afirmações. O verificador já teve o custo da segmentação medido (fim a fim, M8); o juiz configurado não.
+
+**Material.** `compor_frases.py` (determinístico, sem LLM) junta, na ordem, as afirmações de cada uma das 300 respostas em frases de 2 afirmações (3 quando sobra uma): "A, e b." / "A, b e c.". Cada afirmação guarda o trecho que ocupa na resposta nova, então o gabarito continua exato. Resultado: `dialogos_compostos.jsonl`, 1.010 frases construídas. A resposta é dividida automaticamente pela pontuação final (`juizes.frases_pontuacao`); em 79 das 300 respostas a divisão difere da construída porque algumas afirmações têm mais de uma frase (87 afirmações ficam em duas frases e contam como apontadas se qualquer uma delas for apontada).
+
+**Condições** (prompt do juiz configurado sem mudança; mesma temperatura, semente e modelos):
+- **C1:** juiz configurado nas frases compostas, recuperação pela afirmação do gabarito (top-3), como na emenda 3. Isola o efeito da frase composta no julgamento.
+- **C2:** juiz configurado nas frases compostas, recuperação pela frase (top-3 por frase). Condição realista.
+- **V:** verificador fim a fim nas respostas compostas (o modelo extrai as afirmações; alinhamento Jaccard ≥ 0,5, como em M8).
+
+**Medida.** Uma afirmação do gabarito conta como apontada quando o juiz aponta uma frase que contém (parte d)ela. A precisão por afirmação cai, por construção, quando o juiz aponta uma frase em que a errada está junto de corretas: esse é o custo para o revisor e faz parte do que se quer medir.
+
+**Hipóteses** (IC bootstrap em dois níveis, diálogo × fato, 10.000 réplicas; p bootstrap bicaudal; Holm nos 4 modelos locais):
+- **H11 (contaminação).** Em C1, o recall das afirmações erradas é menor que o do juiz configurado no benchmark original.
+- **H12 (recomendação).** Em respostas compostas, o juiz configurado (C2) localiza pior (F1 por afirmação) que o verificador fim a fim (V). **Regra de decisão:** se H12 valer em ≥ 3 de 4 modelos após Holm, a recomendação passa a ser condicional (juiz configurado só para respostas já segmentadas em uma afirmação por frase; verificador para texto livre), e título e Discussão mudam.
+
+**Descritivo:** falso alarme, FAR-crítico, FAR-crítico no falso alarme exatamente pareado (contra o original e contra V), precisão por frase (a frase apontada contém erro), custo e latência. **Exploratório:** nas frases apontadas que contêm erro e mais de uma afirmação, se o "motivo" aponta só a afirmação errada (sobreposição de tokens ≥ 0,4 com a errada e < 0,4 com as corretas).
+
+**Saída inválida:** como na emenda 3 (conta como aprovada e sem frase apontada; fail-closed em paralelo). Análise em `analise_emenda4.py`, escrita e testada com o modelo simulado antes da rodada; fila em `rodar_emenda4.sh` (C1 e C2 nos 4 modelos, depois V).

@@ -300,7 +300,30 @@ def contestada(v: dict) -> bool:
 
 
 # ----------------------------------------------------------------- juízes
-def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> dict:
+# Emenda 4 (28/11/2026): divisão automática da resposta em frases pela pontuação final. Mapeia cada afirmação
+# do gabarito às frases que o seu trecho ("spans", de compor_frases.py) toca; sem "spans", acha o texto na resposta.
+FIM_FRASE = re.compile(r"(?<=[.!?])\s+(?=[A-ZÀ-Ú\"“])")
+
+
+def frases_pontuacao(dialogo: dict) -> tuple[list[str], list[set[int]]]:
+    resp = dialogo["resposta"]
+    limites, ini = [], 0
+    for m in FIM_FRASE.finditer(resp):
+        limites.append((ini, m.start())); ini = m.end()
+    limites.append((ini, len(resp)))
+    frases = [resp[i:j].strip() for i, j in limites]
+    spans = dialogo.get("spans") or []
+    mapa = []
+    for n, a in enumerate(dialogo["afirmacoes"]):
+        if n < len(spans) and spans[n]:
+            i, j = spans[n]
+        else:
+            i = resp.find(a["texto"].rstrip(".?! ")); j = i + len(a["texto"].rstrip(".?! "))
+        mapa.append({s for s, (x, y) in enumerate(limites, 1) if i < y and j > x})
+    return frases, mapa
+
+
+def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str, consulta: str = "afirmacao") -> dict:
     custo = {"tokens_in": 0, "tokens_out": 0, "seg": 0.0, "chamadas": 0, "cache": 0}
 
     def chamar(prompt):
@@ -317,15 +340,19 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
         r.update({"aprovada": bool(out.get("aprovada")), "nota": out.get("nota"), "bruto": out})
     elif juiz.startswith("holistico_sentencas") or juiz == "holistico_conformidade_sentencas_normas":
         afs = dialogo["afirmacoes"]
+        if segmentacao == "pontuacao":  # emenda 4: frases da resposta, divididas pela pontuação
+            frases, mapa = frases_pontuacao(dialogo)
+        else:
+            frases, mapa = [a["texto"] for a in afs], [{i} for i in range(1, len(afs) + 1)]
         normas = ""
-        if juiz.endswith("_normas"):  # o mesmo top-k por afirmação que o verificador usa
+        if juiz.endswith("_normas"):  # o mesmo top-k por afirmação que o verificador usa (ou por frase, emenda 4)
             docs, vistos = [], set()
-            for a in afs:
-                for _, d in idx.buscar(a["texto"], k=k):
+            for txt in (frases if consulta == "frase" else [a["texto"] for a in afs]):
+                for _, d in idx.buscar(txt, k=k):
                     if (d["norma"], d["artigo"]) not in vistos:
                         vistos.add((d["norma"], d["artigo"])); docs.append(d)
             normas = fmt_normas(docs, limite=700)
-        sent = "\n".join(f"S{i}: {a['texto']}" for i, a in enumerate(afs, 1))
+        sent = "\n".join(f"S{i}: {x}" for i, x in enumerate(frases, 1))
         tmpl = P_CONF_SENTENCAS if juiz == "holistico_conformidade_sentencas_normas" else P_SENTENCAS
         out = chamar(tmpl.format(pergunta=dialogo["pergunta"], sentencas=sent, normas=normas))
         ids = set()
@@ -334,7 +361,9 @@ def julgar(dialogo: dict, juiz: str, modelo, idx, k: int, segmentacao: str) -> d
             if m:
                 ids.add(int(m.group()))
         r.update({"aprovada": str(out.get("decisao", "")).lower().startswith("aprov"), "nota": out.get("nota"),
-                  "por_gold_sent": [i in ids for i in range(1, len(afs) + 1)], "bruto": out})
+                  "por_gold_sent": [bool(ids & s) for s in mapa], "bruto": out})
+        if segmentacao == "pontuacao":
+            r.update({"frases": frases, "mapa": [sorted(s) for s in mapa], "frases_apontadas": sorted(ids)})
     elif juiz == "minicheck":
         # Baseline de grounding (M1): cada afirmação do gabarito contra o mesmo top-k do verificador.
         # "No" (não sustentada) = contestada. Não distingue "contradiz" de "não sustenta".
@@ -408,7 +437,9 @@ def main():
     ap.add_argument("--dialogos", default="dialogos.jsonl")
     ap.add_argument("--limite", type=int, default=0, help="só os N primeiros diálogos")
     ap.add_argument("--k", type=int, default=3)
-    ap.add_argument("--segmentacao", choices=["oraculo", "llm"], default="oraculo")
+    ap.add_argument("--segmentacao", choices=["oraculo", "llm", "pontuacao"], default="oraculo")
+    ap.add_argument("--consulta", choices=["afirmacao", "frase"], default="afirmacao",
+                    help="emenda 4: consulta da recuperação do juiz configurado (afirmação do gabarito ou frase)")
     ap.add_argument("--recuperacao", choices=["bm25", "hibrida", "oraculo"], default="hibrida")
     a = ap.parse_args()
 
@@ -425,7 +456,8 @@ def main():
     idx = Recuperador(a.recuperacao)
     RES.mkdir(exist_ok=True)
     rotulo = re.sub(r"[^a-zA-Z0-9.-]+", "-", a.modelo)
-    saida = RES / f"{a.juiz}__{rotulo}__{a.segmentacao}__{a.recuperacao}__{Path(a.dialogos).stem}.jsonl"
+    rec = a.recuperacao + ("-frase" if a.consulta == "frase" else "")
+    saida = RES / f"{a.juiz}__{rotulo}__{a.segmentacao}__{rec}__{Path(a.dialogos).stem}.jsonl"
     if not modelo.ativo and getattr(base, "modo", "") == "gravar":  # fase 1 do Haiku: saída descartável
         saida = Path(os.environ.get("TMPDIR", "/tmp")) / f"_haiku_gravar__{a.juiz}.jsonl"
         saida.unlink(missing_ok=True)
@@ -437,7 +469,7 @@ def main():
     print(f"{a.juiz} / {a.modelo}: {len(pend)} pendentes de {len(dialogos)} -> {saida.name}")
     with saida.open("a", encoding="utf-8") as f:
         for i, d in enumerate(pend, 1):
-            r = julgar(d, a.juiz, modelo, idx, a.k, a.segmentacao)
+            r = julgar(d, a.juiz, modelo, idx, a.k, a.segmentacao, a.consulta)
             f.write(json.dumps(r, ensure_ascii=False) + "\n"); f.flush()
             if i % 10 == 0 or i == len(pend):
                 print(f"  {i}/{len(pend)}", flush=True)
